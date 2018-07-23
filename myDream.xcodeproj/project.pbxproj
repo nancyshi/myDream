@@ -7,15 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		335E87622105FA7F00DF7786 /* SKCropMaskNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E87612105FA7F00DF7786 /* SKCropMaskNode.swift */; };
+		682C9EB22104B37A007F6348 /* SKScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C9EB12104B37A007F6348 /* SKScrollNode.swift */; };
 		6878BB782103847300AB8E28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BB772103847300AB8E28 /* AppDelegate.swift */; };
-		6878BB7A2103847300AB8E28 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BB792103847300AB8E28 /* GameScene.sks */; };
-		6878BB7C2103847300AB8E28 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BB7B2103847300AB8E28 /* Actions.sks */; };
-		6878BB7E2103847300AB8E28 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BB7D2103847300AB8E28 /* GameScene.swift */; };
 		6878BB802103847300AB8E28 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BB7F2103847300AB8E28 /* GameViewController.swift */; };
 		6878BB832103847300AB8E28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6878BB812103847300AB8E28 /* Main.storyboard */; };
 		6878BB852103847400AB8E28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6878BB842103847400AB8E28 /* Assets.xcassets */; };
 		6878BB882103847400AB8E28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6878BB862103847400AB8E28 /* LaunchScreen.storyboard */; };
 		6878BB932103847500AB8E28 /* myDreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BB922103847500AB8E28 /* myDreamUITests.swift */; };
+		6878BBA9210384DC00AB8E28 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA1210384DC00AB8E28 /* bg@2x.png */; };
+		6878BBAA210384DC00AB8E28 /* bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA2210384DC00AB8E28 /* bg@3x.png */; };
+		6878BBAB210384DC00AB8E28 /* mainButton_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA3210384DC00AB8E28 /* mainButton_green@2x.png */; };
+		6878BBAC210384DC00AB8E28 /* mainButton_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA4210384DC00AB8E28 /* mainButton_green@3x.png */; };
+		6878BBAD210384DC00AB8E28 /* mainButton_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA5210384DC00AB8E28 /* mainButton_orange@2x.png */; };
+		6878BBAE210384DC00AB8E28 /* mainButton_orange@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA6210384DC00AB8E28 /* mainButton_orange@3x.png */; };
+		6878BBAF210384DC00AB8E28 /* naviBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA7210384DC00AB8E28 /* naviBar@2x.png */; };
+		6878BBB0210384DC00AB8E28 /* naviBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBA8210384DC00AB8E28 /* naviBar@3x.png */; };
+		6878BBB2210384F700AB8E28 /* mainScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBB1210384F700AB8E28 /* mainScene.sks */; };
+		6878BBB62103853700AB8E28 /* mainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBB52103853700AB8E28 /* mainScene.swift */; };
+		6878BBB82103854900AB8E28 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBB72103854900AB8E28 /* SKButton.swift */; };
+		6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBBA2103900900AB8E28 /* fightSelectScene.sks */; };
+		6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBBC2103925900AB8E28 /* fightSelectScene.swift */; };
+		68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */; };
+		68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */; };
+		68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9D2103A3940000ED93 /* houseItem.sks */; };
+		68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */; };
+		68DA4FA22103A43F0000ED93 /* defaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */; };
+		68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA4FA32103A5CA0000ED93 /* HouseItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,11 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		335E87612105FA7F00DF7786 /* SKCropMaskNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCropMaskNode.swift; sourceTree = "<group>"; };
+		682C9EB12104B37A007F6348 /* SKScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScrollNode.swift; sourceTree = "<group>"; };
 		6878BB742103847300AB8E28 /* myDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6878BB772103847300AB8E28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6878BB792103847300AB8E28 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		6878BB7B2103847300AB8E28 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		6878BB7D2103847300AB8E28 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6878BB7F2103847300AB8E28 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6878BB822103847300AB8E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6878BB842103847400AB8E28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,6 +59,25 @@
 		6878BB8E2103847500AB8E28 /* myDreamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myDreamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6878BB922103847500AB8E28 /* myDreamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myDreamUITests.swift; sourceTree = "<group>"; };
 		6878BB942103847500AB8E28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6878BBA1210384DC00AB8E28 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		6878BBA2210384DC00AB8E28 /* bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@3x.png"; sourceTree = "<group>"; };
+		6878BBA3210384DC00AB8E28 /* mainButton_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainButton_green@2x.png"; sourceTree = "<group>"; };
+		6878BBA4210384DC00AB8E28 /* mainButton_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainButton_green@3x.png"; sourceTree = "<group>"; };
+		6878BBA5210384DC00AB8E28 /* mainButton_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainButton_orange@2x.png"; sourceTree = "<group>"; };
+		6878BBA6210384DC00AB8E28 /* mainButton_orange@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainButton_orange@3x.png"; sourceTree = "<group>"; };
+		6878BBA7210384DC00AB8E28 /* naviBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "naviBar@2x.png"; sourceTree = "<group>"; };
+		6878BBA8210384DC00AB8E28 /* naviBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "naviBar@3x.png"; sourceTree = "<group>"; };
+		6878BBB1210384F700AB8E28 /* mainScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = mainScene.sks; sourceTree = "<group>"; };
+		6878BBB52103853700AB8E28 /* mainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScene.swift; sourceTree = "<group>"; };
+		6878BBB72103854900AB8E28 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		6878BBBA2103900900AB8E28 /* fightSelectScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fightSelectScene.sks; sourceTree = "<group>"; };
+		6878BBBC2103925900AB8E28 /* fightSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fightSelectScene.swift; sourceTree = "<group>"; };
+		68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@2x.png"; sourceTree = "<group>"; };
+		68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@3x.png"; sourceTree = "<group>"; };
+		68DA4F9D2103A3940000ED93 /* houseItem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = houseItem.sks; sourceTree = "<group>"; };
+		68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@2x.png"; sourceTree = "<group>"; };
+		68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@3x.png"; sourceTree = "<group>"; };
+		68DA4FA32103A5CA0000ED93 /* HouseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +119,9 @@
 		6878BB762103847300AB8E28 /* myDream */ = {
 			isa = PBXGroup;
 			children = (
+				6878BBB32103850F00AB8E28 /* Codes */,
+				6878BB9F210384CE00AB8E28 /* Resources */,
 				6878BB772103847300AB8E28 /* AppDelegate.swift */,
-				6878BB792103847300AB8E28 /* GameScene.sks */,
-				6878BB7B2103847300AB8E28 /* Actions.sks */,
-				6878BB7D2103847300AB8E28 /* GameScene.swift */,
 				6878BB7F2103847300AB8E28 /* GameViewController.swift */,
 				6878BB812103847300AB8E28 /* Main.storyboard */,
 				6878BB842103847400AB8E28 /* Assets.xcassets */,
@@ -103,6 +138,81 @@
 				6878BB942103847500AB8E28 /* Info.plist */,
 			);
 			path = myDreamUITests;
+			sourceTree = "<group>";
+		};
+		6878BB9D2103849D00AB8E28 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				6878BBB1210384F700AB8E28 /* mainScene.sks */,
+				6878BBBA2103900900AB8E28 /* fightSelectScene.sks */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		6878BB9E210384B400AB8E28 /* Prefabs */ = {
+			isa = PBXGroup;
+			children = (
+				68DA4F9D2103A3940000ED93 /* houseItem.sks */,
+			);
+			path = Prefabs;
+			sourceTree = "<group>";
+		};
+		6878BB9F210384CE00AB8E28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6878BB9E210384B400AB8E28 /* Prefabs */,
+				6878BB9D2103849D00AB8E28 /* Scenes */,
+				6878BBA0210384DC00AB8E28 /* pics */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6878BBA0210384DC00AB8E28 /* pics */ = {
+			isa = PBXGroup;
+			children = (
+				68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */,
+				68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */,
+				68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */,
+				68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */,
+				6878BBA1210384DC00AB8E28 /* bg@2x.png */,
+				6878BBA2210384DC00AB8E28 /* bg@3x.png */,
+				6878BBA3210384DC00AB8E28 /* mainButton_green@2x.png */,
+				6878BBA4210384DC00AB8E28 /* mainButton_green@3x.png */,
+				6878BBA5210384DC00AB8E28 /* mainButton_orange@2x.png */,
+				6878BBA6210384DC00AB8E28 /* mainButton_orange@3x.png */,
+				6878BBA7210384DC00AB8E28 /* naviBar@2x.png */,
+				6878BBA8210384DC00AB8E28 /* naviBar@3x.png */,
+			);
+			path = pics;
+			sourceTree = "<group>";
+		};
+		6878BBB32103850F00AB8E28 /* Codes */ = {
+			isa = PBXGroup;
+			children = (
+				6878BBB92103855400AB8E28 /* Classes */,
+				6878BBB42103851C00AB8E28 /* SceneMgrs */,
+			);
+			path = Codes;
+			sourceTree = "<group>";
+		};
+		6878BBB42103851C00AB8E28 /* SceneMgrs */ = {
+			isa = PBXGroup;
+			children = (
+				6878BBB52103853700AB8E28 /* mainScene.swift */,
+				6878BBBC2103925900AB8E28 /* fightSelectScene.swift */,
+			);
+			path = SceneMgrs;
+			sourceTree = "<group>";
+		};
+		6878BBB92103855400AB8E28 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6878BBB72103854900AB8E28 /* SKButton.swift */,
+				68DA4FA32103A5CA0000ED93 /* HouseItem.swift */,
+				682C9EB12104B37A007F6348 /* SKScrollNode.swift */,
+				335E87612105FA7F00DF7786 /* SKCropMaskNode.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,11 +296,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6878BBAC210384DC00AB8E28 /* mainButton_green@3x.png in Resources */,
+				6878BBAD210384DC00AB8E28 /* mainButton_orange@2x.png in Resources */,
 				6878BB832103847300AB8E28 /* Main.storyboard in Resources */,
-				6878BB7A2103847300AB8E28 /* GameScene.sks in Resources */,
 				6878BB852103847400AB8E28 /* Assets.xcassets in Resources */,
 				6878BB882103847400AB8E28 /* LaunchScreen.storyboard in Resources */,
-				6878BB7C2103847300AB8E28 /* Actions.sks in Resources */,
+				6878BBA9210384DC00AB8E28 /* bg@2x.png in Resources */,
+				6878BBAF210384DC00AB8E28 /* naviBar@2x.png in Resources */,
+				68DA4FA22103A43F0000ED93 /* defaultImage@3x.png in Resources */,
+				6878BBB2210384F700AB8E28 /* mainScene.sks in Resources */,
+				68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */,
+				6878BBAA210384DC00AB8E28 /* bg@3x.png in Resources */,
+				68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */,
+				6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */,
+				6878BBB0210384DC00AB8E28 /* naviBar@3x.png in Resources */,
+				68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */,
+				6878BBAB210384DC00AB8E28 /* mainButton_green@2x.png in Resources */,
+				6878BBAE210384DC00AB8E28 /* mainButton_orange@3x.png in Resources */,
+				68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,9 +331,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6878BB7E2103847300AB8E28 /* GameScene.swift in Sources */,
 				6878BB802103847300AB8E28 /* GameViewController.swift in Sources */,
+				6878BBB62103853700AB8E28 /* mainScene.swift in Sources */,
 				6878BB782103847300AB8E28 /* AppDelegate.swift in Sources */,
+				335E87622105FA7F00DF7786 /* SKCropMaskNode.swift in Sources */,
+				6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */,
+				6878BBB82103854900AB8E28 /* SKButton.swift in Sources */,
+				68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */,
+				682C9EB22104B37A007F6348 /* SKScrollNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
