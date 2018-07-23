@@ -27,8 +27,6 @@ class mainScene: SKScene,SKButtonDelegate {
             button_relaxtion!.type = .Normal
             self.setLabel(label: button_relaxtion!.buttonLabel,text: "Relaxtion")
         }
-        print(self.frame)
-        print(self.view!.frame)
     }
     func setLabel(label:SKLabelNode,text:String) {
         label.text = text

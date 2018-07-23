@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+
 class fightSelectScene: SKScene,SKButtonDelegate {
     
     var backButton : SKButton?
@@ -24,42 +25,9 @@ class fightSelectScene: SKScene,SKButtonDelegate {
             backButton?.zPosition = 3
             self.addChild(backButton!)
         }
-        //test1
-        let scrollNode = SKScrollNode.init()
-        scrollNode.zPosition = 4
-        scrollNode.container.isUserInteractionEnabled = false
         
-
-        let maskNode = SKCropMaskNode(color: UIColor.blue, size: CGSize(width: 413.999, height: 672.909))
-        maskNode.zPosition = 5
-        maskNode.position = CGPoint(x: 0, y: -31.545)
-
-        scrollNode.maskNode = maskNode
-        let testHouse = HouseItem.init()
-        testHouse.zPosition = 6
-        testHouse.isResponseMoved = false
-        scrollNode.container.size = maskNode.size
-        scrollNode.container.size.height = scrollNode.container.size.height + 200
-        scrollNode.container.position = maskNode.position
-        scrollNode.container.addChild(testHouse)
-
-        self.addChild(scrollNode)
         
-        //test2 uikit
-//        let scrollView = UIScrollView.init()
-//        let widthFactor = CGFloat(413.999/414)
-//        let heightFctor = CGFloat(672.909/750)
-//
-//        scrollView.frame.size = CGSize.init(width: self.view!.frame.width * widthFactor, height: self.view!.frame.height * heightFctor)
-//        print("view fram is \(self.view!.frame)")
-//
-//
-//        let centerPointInView = self.convertPoint(toView: CGPoint(x: 0, y: -31.545))
-//        scrollView.center = centerPointInView
-//        scrollView.backgroundColor = UIColor.white
-//        //scrollView.contentMode = .scaleAspectFit
-//        self.view?.addSubview(scrollView)
-//        print(scrollView.frame)
+        
     }
     func onClick(button: SKButton) {
         if button == backButton! {
