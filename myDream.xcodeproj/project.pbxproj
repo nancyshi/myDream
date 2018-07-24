@@ -26,6 +26,7 @@
 		6878BBB82103854900AB8E28 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBB72103854900AB8E28 /* SKButton.swift */; };
 		6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBBA2103900900AB8E28 /* fightSelectScene.sks */; };
 		6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBBC2103925900AB8E28 /* fightSelectScene.swift */; };
+		689D451921076A2900C78489 /* SKScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D451821076A2900C78489 /* SKScrollNode.swift */; };
 		68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */; };
 		68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */; };
 		68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9D2103A3940000ED93 /* houseItem.sks */; };
@@ -68,6 +69,7 @@
 		6878BBB72103854900AB8E28 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 		6878BBBA2103900900AB8E28 /* fightSelectScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fightSelectScene.sks; sourceTree = "<group>"; };
 		6878BBBC2103925900AB8E28 /* fightSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fightSelectScene.swift; sourceTree = "<group>"; };
+		689D451821076A2900C78489 /* SKScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScrollNode.swift; sourceTree = "<group>"; };
 		68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@2x.png"; sourceTree = "<group>"; };
 		68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@3x.png"; sourceTree = "<group>"; };
 		68DA4F9D2103A3940000ED93 /* houseItem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = houseItem.sks; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				6878BBB72103854900AB8E28 /* SKButton.swift */,
 				68DA4FA32103A5CA0000ED93 /* HouseItem.swift */,
+				689D451821076A2900C78489 /* SKScrollNode.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */,
 				6878BBB82103854900AB8E28 /* SKButton.swift in Sources */,
 				68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */,
+				689D451921076A2900C78489 /* SKScrollNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

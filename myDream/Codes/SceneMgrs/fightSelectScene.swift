@@ -21,12 +21,28 @@ class fightSelectScene: SKScene,SKButtonDelegate {
             backButton?.buttonLabel.text = "< BACK"
             backButton?.buttonLabel.fontName = "PingFang SC"
             backButton?.buttonLabel.fontSize = 20
-            backButton?.position = CGPoint(x: -162.613, y: 323.4)
-            backButton?.zPosition = 3
-            self.addChild(backButton!)
+            backButton?.position = CGPoint(x: -162.613, y: -6.1)
+            if let nav = self.childNode(withName: "naviBar") as? SKSpriteNode {
+                nav.addChild(backButton!)
+            }
         }
         
+        //test
+        let scrollNode = SKScrollNode.init()
+        let maskNode = SKSpriteNode.init()
+        maskNode.size = CGSize(width: 414, height: 672)
+        maskNode.position = CGPoint(x: 0, y: -31.545)
+        scrollNode.maskNode = maskNode
+        scrollNode.container.size = CGSize(width: maskNode.size.width, height: maskNode.size.height + 300)
+        scrollNode.refreshPropoties()
         
+        let testHouse = HouseItem.init()
+        scrollNode.container.addChild(testHouse)
+        
+        
+        if let contentLayer = self.childNode(withName: "contentLayer")  {
+            contentLayer.addChild(scrollNode)
+        }
         
     }
     func onClick(button: SKButton) {
