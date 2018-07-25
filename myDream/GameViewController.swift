@@ -16,7 +16,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            view.ignoresSiblingOrder = true
             if let scene = SKScene(fileNamed: "mainScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFit

@@ -32,17 +32,21 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         let maskNode = SKSpriteNode.init()
         maskNode.size = CGSize(width: 414, height: 672)
         maskNode.position = CGPoint(x: 0, y: -31.545)
+        maskNode.color = UIColor.red
         scrollNode.maskNode = maskNode
         scrollNode.container.size = CGSize(width: maskNode.size.width, height: maskNode.size.height + 300)
         scrollNode.refreshPropoties()
         
         let testHouse = HouseItem.init()
+        testHouse.isResponseMoved = false
+        testHouse.target = self
         scrollNode.container.addChild(testHouse)
         
         
         if let contentLayer = self.childNode(withName: "contentLayer")  {
             contentLayer.addChild(scrollNode)
         }
+        
         
     }
     func onClick(button: SKButton) {

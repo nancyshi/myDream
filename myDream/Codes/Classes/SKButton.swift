@@ -130,23 +130,22 @@ class SKButton: SKSpriteNode {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            if self.status == SKButtonStatus.Hold && self.isResponseMoved == true {
-                let location = touch.location(in: self.parent!)
-                if self.contains(location) {
-                    
-                }
-                else {
-                    
-                    self.status = SKButtonStatus.Normal
-                }
-            }
-            else if self.status == .Hold && self.isResponseMoved == false {
-                if self.parent != nil {
-                    //self.status = .Normal
-                    self.parent!.touchesMoved(touches, with: event)
+
+        if self.isResponseMoved == true {
+            if self.status == .Hold {
+                if let touch = touches.first {
+                    let location = touch.location(in: self.parent!)
+                    if !self.contains(location) {
+                        self.status = .Normal
+                    }
                 }
             }
+        }
+        else {
+            if self.status == .Hold {
+                self.status = .Normal
+            }
+            self.parent?.touchesMoved(touches, with: event)
         }
     }
     

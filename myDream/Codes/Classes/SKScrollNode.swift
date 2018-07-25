@@ -36,7 +36,6 @@ class SKScrollNode: SKCropNode {
                     container.isUserInteractionEnabled = true
                     container.minTopY = maskNode.frame.size.height/2 + maskNode.position.y
                     container.maxBottomY = maskNode.position.y - maskNode.frame.size.height/2
-    
                 }
                 else {
                     container.isUserInteractionEnabled = false
@@ -122,25 +121,25 @@ class SKScrollNodeContainer: SKSpriteNode {
 //    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("hey")
+        
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //scroll behavior
-        if isPositionInRange(position: self.position) == .inRange {
+        if isPositionInRange(aPosition: self.position) == .inRange {
             if let touch = touches.first {
                 let touchLocation = touch.location(in: self.parent!)    //never init a container alone , init it by a scrollNode
                 let preLocation = touch.previousLocation(in: self.parent!)
                 let dy = touchLocation.y - preLocation.y
                 
                 let willPositionY = self.position.y + dy
-                if isPositionInRange(position: CGPoint(x: 0, y: willPositionY)) == .inRange {
+                if isPositionInRange(aPosition: CGPoint(x: 0, y: willPositionY)) == .inRange {
                     self.position.y = willPositionY
                 }
-                else if isPositionInRange(position: CGPoint(x: 0, y: willPositionY)) == .minTopYErro {
-                    self.position.y = minTopY
+                else if isPositionInRange(aPosition: CGPoint(x: 0, y: willPositionY)) == .minTopYErro {
+                    self.position.y = minTopY - self.size.height/2
                 }
                 else {
-                    self.position.y = maxBottomY
+                    self.position.y = maxBottomY + self.size.height/2
                 }
             }
         }
@@ -152,14 +151,14 @@ class SKScrollNodeContainer: SKSpriteNode {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
     }
-    private func isPositionInRange(position:CGPoint) ->SKScrollNodeContainerRangeTestCase {
-        let topY = position.y + self.size.height/2
-        let bottomY = position.y - self.size.height/2
+    private func isPositionInRange(aPosition:CGPoint) ->SKScrollNodeContainerRangeTestCase {
         
-        if topY >= minTopY && bottomY <= maxBottomY {
+        let top = aPosition.y + self.size.height/2
+        let bottom = aPosition.y - self.size.height/2
+        if (top > minTopY || abs(top - minTopY) <= 0.01) && (bottom < maxBottomY || abs(bottom - maxBottomY) <= 0.01) {
             return .inRange
         }
-        else if topY < minTopY {
+        else if top < minTopY {
             return .minTopYErro
         }
         else  {
