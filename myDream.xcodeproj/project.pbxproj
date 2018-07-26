@@ -27,6 +27,8 @@
 		6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBBA2103900900AB8E28 /* fightSelectScene.sks */; };
 		6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBBC2103925900AB8E28 /* fightSelectScene.swift */; };
 		689D451921076A2900C78489 /* SKScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D451821076A2900C78489 /* SKScrollNode.swift */; };
+		68B20A25210A1CB000B57749 /* functionaryConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 68B20A23210A1CB000B57749 /* functionaryConfig.json */; };
+		68B20A26210A1CB000B57749 /* houseConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 68B20A24210A1CB000B57749 /* houseConfig.json */; };
 		68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */; };
 		68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */; };
 		68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9D2103A3940000ED93 /* houseItem.sks */; };
@@ -70,6 +72,8 @@
 		6878BBBA2103900900AB8E28 /* fightSelectScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fightSelectScene.sks; sourceTree = "<group>"; };
 		6878BBBC2103925900AB8E28 /* fightSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fightSelectScene.swift; sourceTree = "<group>"; };
 		689D451821076A2900C78489 /* SKScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScrollNode.swift; sourceTree = "<group>"; };
+		68B20A23210A1CB000B57749 /* functionaryConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = functionaryConfig.json; sourceTree = "<group>"; };
+		68B20A24210A1CB000B57749 /* houseConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = houseConfig.json; sourceTree = "<group>"; };
 		68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@2x.png"; sourceTree = "<group>"; };
 		68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@3x.png"; sourceTree = "<group>"; };
 		68DA4F9D2103A3940000ED93 /* houseItem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = houseItem.sks; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 		6878BB9F210384CE00AB8E28 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68B20A22210A1C9500B57749 /* configs */,
 				6878BB9E210384B400AB8E28 /* Prefabs */,
 				6878BB9D2103849D00AB8E28 /* Scenes */,
 				6878BBA0210384DC00AB8E28 /* pics */,
@@ -210,6 +215,15 @@
 				689D451821076A2900C78489 /* SKScrollNode.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		68B20A22210A1C9500B57749 /* configs */ = {
+			isa = PBXGroup;
+			children = (
+				68B20A23210A1CB000B57749 /* functionaryConfig.json */,
+				68B20A24210A1CB000B57749 /* houseConfig.json */,
+			);
+			path = configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +317,7 @@
 				68DA4FA22103A43F0000ED93 /* defaultImage@3x.png in Resources */,
 				6878BBB2210384F700AB8E28 /* mainScene.sks in Resources */,
 				68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */,
+				68B20A25210A1CB000B57749 /* functionaryConfig.json in Resources */,
 				6878BBAA210384DC00AB8E28 /* bg@3x.png in Resources */,
 				68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */,
 				6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */,
@@ -310,6 +325,7 @@
 				68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */,
 				6878BBAB210384DC00AB8E28 /* mainButton_green@2x.png in Resources */,
 				6878BBAE210384DC00AB8E28 /* mainButton_orange@3x.png in Resources */,
+				68B20A26210A1CB000B57749 /* houseConfig.json in Resources */,
 				68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

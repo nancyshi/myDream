@@ -1,0 +1,20 @@
+[
+  {
+    "imageName": "defaultImage",
+    "id": 101,
+    "name": "maria",
+    "headIconName": "defaultImage"
+  },
+  {
+    "imageName": "defaultImage",
+    "id": 102,
+    "name": "coco",
+    "headIconName": "defaultImage"
+  },
+  {
+    "imageName": "defaultImage",
+    "id": 103,
+    "name": "lina",
+    "headIconName": "defaultImage"
+  }
+]
