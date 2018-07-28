@@ -46,7 +46,7 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         if let contentLayer = self.childNode(withName: "contentLayer")  {
             contentLayer.addChild(scrollNode)
         }
-        
+
         
     }
     func onClick(button: SKButton) {

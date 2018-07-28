@@ -35,6 +35,8 @@
 		68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */; };
 		68DA4FA22103A43F0000ED93 /* defaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */; };
 		68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA4FA32103A5CA0000ED93 /* HouseItem.swift */; };
+		68E90B60210CCF5900F848CF /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E90B5F210CCF5900F848CF /* DataType.swift */; };
+		68E90B62210CD45200F848CF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E90B61210CD45200F848CF /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@2x.png"; sourceTree = "<group>"; };
 		68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@3x.png"; sourceTree = "<group>"; };
 		68DA4FA32103A5CA0000ED93 /* HouseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseItem.swift; sourceTree = "<group>"; };
+		68E90B5F210CCF5900F848CF /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
+		68E90B61210CD45200F848CF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,8 @@
 				6878BBB72103854900AB8E28 /* SKButton.swift */,
 				68DA4FA32103A5CA0000ED93 /* HouseItem.swift */,
 				689D451821076A2900C78489 /* SKScrollNode.swift */,
+				68E90B5F210CCF5900F848CF /* DataType.swift */,
+				68E90B61210CD45200F848CF /* DataManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -349,7 +355,9 @@
 				6878BB782103847300AB8E28 /* AppDelegate.swift in Sources */,
 				6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */,
 				6878BBB82103854900AB8E28 /* SKButton.swift in Sources */,
+				68E90B60210CCF5900F848CF /* DataType.swift in Sources */,
 				68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */,
+				68E90B62210CD45200F848CF /* DataManager.swift in Sources */,
 				689D451921076A2900C78489 /* SKScrollNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
