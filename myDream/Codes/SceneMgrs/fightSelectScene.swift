@@ -35,8 +35,12 @@ class fightSelectScene: SKScene,SKButtonDelegate {
                 self.view?.presentScene(scene)
             }
         }
-        else {
-            print("some button has been clicked")
+        else if button is HouseItem {
+            if let scene = SKScene(fileNamed: "battleScene") as? battleScene {
+                scene.scaleMode = .aspectFit
+                scene.house = (button as! HouseItem).house
+                self.view?.presentScene(scene)
+            }
         }
     }
     func setUpDatas() {

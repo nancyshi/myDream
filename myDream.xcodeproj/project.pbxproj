@@ -37,6 +37,11 @@
 		68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA4FA32103A5CA0000ED93 /* HouseItem.swift */; };
 		68E90B60210CCF5900F848CF /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E90B5F210CCF5900F848CF /* DataType.swift */; };
 		68E90B62210CD45200F848CF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E90B61210CD45200F848CF /* DataManager.swift */; };
+		68EB58BE210E1DA40077BF7D /* battleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68EB58BD210E1DA40077BF7D /* battleScene.sks */; };
+		68EB58C1210E21CA0077BF7D /* buttonBg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68EB58BF210E21CA0077BF7D /* buttonBg@3x.png */; };
+		68EB58C2210E21CA0077BF7D /* buttonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68EB58C0210E21CA0077BF7D /* buttonBg@2x.png */; };
+		68EB58C4210E24C30077BF7D /* battle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68EB58C3210E24C30077BF7D /* battle@2x.png */; };
+		68EB58C6210E27980077BF7D /* battleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EB58C5210E27980077BF7D /* battleScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,11 @@
 		68DA4FA32103A5CA0000ED93 /* HouseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseItem.swift; sourceTree = "<group>"; };
 		68E90B5F210CCF5900F848CF /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		68E90B61210CD45200F848CF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		68EB58BD210E1DA40077BF7D /* battleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = battleScene.sks; sourceTree = "<group>"; };
+		68EB58BF210E21CA0077BF7D /* buttonBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBg@3x.png"; sourceTree = "<group>"; };
+		68EB58C0210E21CA0077BF7D /* buttonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBg@2x.png"; sourceTree = "<group>"; };
+		68EB58C3210E24C30077BF7D /* battle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battle@2x.png"; sourceTree = "<group>"; };
+		68EB58C5210E27980077BF7D /* battleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = battleScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +161,7 @@
 			children = (
 				6878BBB1210384F700AB8E28 /* mainScene.sks */,
 				6878BBBA2103900900AB8E28 /* fightSelectScene.sks */,
+				68EB58BD210E1DA40077BF7D /* battleScene.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -177,6 +188,9 @@
 		6878BBA0210384DC00AB8E28 /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				68EB58C3210E24C30077BF7D /* battle@2x.png */,
+				68EB58C0210E21CA0077BF7D /* buttonBg@2x.png */,
+				68EB58BF210E21CA0077BF7D /* buttonBg@3x.png */,
 				68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */,
 				68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */,
 				68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */,
@@ -207,6 +221,7 @@
 			children = (
 				6878BBB52103853700AB8E28 /* mainScene.swift */,
 				6878BBBC2103925900AB8E28 /* fightSelectScene.swift */,
+				68EB58C5210E27980077BF7D /* battleScene.swift */,
 			);
 			path = SceneMgrs;
 			sourceTree = "<group>";
@@ -326,10 +341,14 @@
 				68B20A25210A1CB000B57749 /* functionaryConfig.json in Resources */,
 				6878BBAA210384DC00AB8E28 /* bg@3x.png in Resources */,
 				68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */,
+				68EB58C2210E21CA0077BF7D /* buttonBg@2x.png in Resources */,
+				68EB58C4210E24C30077BF7D /* battle@2x.png in Resources */,
 				6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */,
+				68EB58BE210E1DA40077BF7D /* battleScene.sks in Resources */,
 				6878BBB0210384DC00AB8E28 /* naviBar@3x.png in Resources */,
 				68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */,
 				6878BBAB210384DC00AB8E28 /* mainButton_green@2x.png in Resources */,
+				68EB58C1210E21CA0077BF7D /* buttonBg@3x.png in Resources */,
 				6878BBAE210384DC00AB8E28 /* mainButton_orange@3x.png in Resources */,
 				68B20A26210A1CB000B57749 /* houseConfig.json in Resources */,
 				68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */,
@@ -352,6 +371,7 @@
 			files = (
 				6878BB802103847300AB8E28 /* GameViewController.swift in Sources */,
 				6878BBB62103853700AB8E28 /* mainScene.swift in Sources */,
+				68EB58C6210E27980077BF7D /* battleScene.swift in Sources */,
 				6878BB782103847300AB8E28 /* AppDelegate.swift in Sources */,
 				6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */,
 				6878BBB82103854900AB8E28 /* SKButton.swift in Sources */,
