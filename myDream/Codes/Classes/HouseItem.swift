@@ -10,10 +10,11 @@ import UIKit
 import SpriteKit
 
 class HouseItem: SKButton {
-    var houseName:String = "Default Name"
-    var image = #imageLiteral(resourceName: "defaultImage.png")
+    var houseNameLabel = SKLabelNode(text: "Coming House")
+    var headIconNode = SKSpriteNode()
     var minLabel = SKLabelNode(text: "$ 20")
     var maxLabel = SKLabelNode(text: "$ 200K")
+    var house: House?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -25,6 +26,8 @@ class HouseItem: SKButton {
             
             minLabel = backGround.childNode(withName: "//minLabel") as! SKLabelNode
             maxLabel = backGround.childNode(withName: "//maxLabel") as! SKLabelNode
+            headIconNode = backGround.childNode(withName: "//headIcon") as! SKSpriteNode
+            houseNameLabel = backGround.childNode(withName: "//houseNameLabel") as! SKLabelNode
         }
     }
     required init?(coder aDecoder: NSCoder) {
@@ -32,5 +35,12 @@ class HouseItem: SKButton {
     }
     convenience init() {
         self.init(texture: nil, color: UIColor.clear, size: CGSize(width: 100, height: 100))
+    }
+    convenience init(aHouse:House) {
+        self.init(texture: nil, color: UIColor.clear, size: CGSize(width: 100, height: 100))
+        self.house = aHouse
+        self.houseNameLabel.text = aHouse.name
+        self.minLabel.text = "$ " + String(aHouse.minStake)
+        self.maxLabel.text = "$ " + String(aHouse.maxStake)
     }
 }

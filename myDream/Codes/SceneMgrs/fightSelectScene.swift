@@ -11,9 +11,44 @@ import SpriteKit
 
 
 class fightSelectScene: SKScene,SKButtonDelegate {
-    
+    //vars of uiElements
     var backButton : SKButton?
+    var scrollNode : SKScrollNode = SKScrollNode()
+    var houseItems = [HouseItem]()
+    //vars of datas
+    var houses: [House] = []
+    var functionarys: [Functionary] = []
+    
     override func didMove(to view: SKView) {
+        
+        self.setUpDatas()
+        self.setUpDefaultView()
+        self.changeDefaultViewByData()
+        if let contentLayer = self.childNode(withName: "contentLayer"){
+            contentLayer.addChild(scrollNode)
+        }
+    }
+    func onClick(button: SKButton) {
+        if button == backButton! {
+            if let scene = SKScene(fileNamed: "mainScene") {
+                scene.scaleMode = .aspectFit
+                self.view?.presentScene(scene)
+            }
+        }
+        else {
+            print("some button has been clicked")
+        }
+    }
+    func setUpDatas() {
+        guard let houseTemp = DataManager.shared.loadJsonData(fileName: "houseConfig", givenType: [House].self),
+            let functionaryTemp = DataManager.shared.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self) else {
+                return
+        }
+        houses = houseTemp
+        functionarys = functionaryTemp
+    }
+    func setUpDefaultView() {
+        //back button
         backButton = SKButton.init(type: .Label)
         if backButton != nil {
             //config back label
@@ -26,38 +61,47 @@ class fightSelectScene: SKScene,SKButtonDelegate {
                 nav.addChild(backButton!)
             }
         }
-        
-        //test
-        let scrollNode = SKScrollNode.init()
+        //content
         let maskNode = SKSpriteNode.init()
         maskNode.size = CGSize(width: 414, height: 672)
         maskNode.position = CGPoint(x: 0, y: -31.545)
         maskNode.color = UIColor.red
         scrollNode.maskNode = maskNode
-        scrollNode.container.size = CGSize(width: maskNode.size.width, height: maskNode.size.height + 300)
+        
+        scrollNode.container.size = maskNode.size
         scrollNode.refreshPropoties()
-        
-        let testHouse = HouseItem.init()
-        testHouse.isResponseMoved = false
-        testHouse.target = self
-        scrollNode.container.addChild(testHouse)
-        
-        
-        if let contentLayer = self.childNode(withName: "contentLayer")  {
-            contentLayer.addChild(scrollNode)
-        }
+        scrollNode.setContainerTopOrBottom(top: true)
 
-        
     }
-    func onClick(button: SKButton) {
-        if button == backButton! {
-            if let scene = SKScene(fileNamed: "mainScene") {
-                scene.scaleMode = .aspectFit
-                self.view?.presentScene(scene)
+    
+    func changeDefaultViewByData() {
+        for oneHouse in houses {
+            let oneHouseItem = HouseItem.init(aHouse: oneHouse)
+            for oneFunctionary in functionarys {
+                if oneHouse.functionaryId == oneFunctionary.id {
+                    let texture = SKTexture(imageNamed: oneFunctionary.headIconName)
+                    oneHouseItem.headIconNode.texture = texture
+                    break
+                }
             }
+            
+            oneHouseItem.target = self
+            houseItems.append(oneHouseItem)
         }
-        else {
-            print("some button has been clicked")
+        let gapOfHouseItems:CGFloat = 13
+        let gapOfHouseItemToTopContainer:CGFloat = 22
+        let containerMinHeight = gapOfHouseItemToTopContainer + houseItems[0].size.height * CGFloat(houseItems.count) + gapOfHouseItems * CGFloat(houseItems.count)
+        
+        scrollNode.container.size.height = containerMinHeight
+        scrollNode.refreshPropoties()
+        scrollNode.setContainerTopOrBottom(top: true)
+        var index = 0
+        for oneHouseItem in houseItems {
+            let yDistantFromTop = gapOfHouseItemToTopContainer + oneHouseItem.size.height/2 + (oneHouseItem.size.height + gapOfHouseItems) * CGFloat(index)
+            let yPosition = scrollNode.container.size.height/2 - yDistantFromTop
+            oneHouseItem.position = CGPoint(x: 0, y: yPosition)
+            scrollNode.container.addChild(oneHouseItem)
+            index = index + 1
         }
     }
 }

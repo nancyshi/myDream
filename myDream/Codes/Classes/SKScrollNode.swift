@@ -47,7 +47,7 @@ class SKScrollNode: SKCropNode {
     override init() {
         super.init()
         self.addChild(container)
-        container.color = UIColor.red
+       // container.color = UIColor.red
     }
     
     required init?(coder aDecoder: NSCoder) {
