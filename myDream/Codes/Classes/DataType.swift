@@ -20,6 +20,7 @@ struct House : Codable {
     var name: String
     var maxStake: Int
     var minStake: Int
-    var originDollor: Int
+    var dollorForPurchase: Int
     var functionaryId: Int
+    var minReputationForPurchase: Int
 }

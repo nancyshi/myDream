@@ -1,0 +1,29 @@
+[
+  {
+    "minStake": 10,
+    "dollorForPurchase": 10000,
+    "name": "welcom house",
+    "functionaryId": 101,
+    "id": 1001,
+    "minReputationForPurchase": 100,
+    "maxStake": 200
+  },
+  {
+    "minStake": 200,
+    "dollorForPurchase": 100000,
+    "name": "sexy house",
+    "functionaryId": 102,
+    "id": 1002,
+    "minReputationForPurchase": 500,
+    "maxStake": 4000
+  },
+  {
+    "minStake": 1000,
+    "dollorForPurchase": 1000000,
+    "name": "sunshine",
+    "functionaryId": 103,
+    "id": 1003,
+    "minReputationForPurchase": 2000,
+    "maxStake": 20000
+  }
+]

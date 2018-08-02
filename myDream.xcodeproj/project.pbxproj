@@ -26,9 +26,10 @@
 		6878BBB82103854900AB8E28 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBB72103854900AB8E28 /* SKButton.swift */; };
 		6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6878BBBA2103900900AB8E28 /* fightSelectScene.sks */; };
 		6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBBC2103925900AB8E28 /* fightSelectScene.swift */; };
+		68840781211349560081C70C /* functionaryConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 6884077F211349560081C70C /* functionaryConfig.json */; };
+		68840782211349560081C70C /* houseConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 68840780211349560081C70C /* houseConfig.json */; };
+		688407852113497E0081C70C /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 688407832113497E0081C70C /* dataModel.xcdatamodeld */; };
 		689D451921076A2900C78489 /* SKScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D451821076A2900C78489 /* SKScrollNode.swift */; };
-		68B20A25210A1CB000B57749 /* functionaryConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 68B20A23210A1CB000B57749 /* functionaryConfig.json */; };
-		68B20A26210A1CB000B57749 /* houseConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 68B20A24210A1CB000B57749 /* houseConfig.json */; };
 		68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */; };
 		68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */; };
 		68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9D2103A3940000ED93 /* houseItem.sks */; };
@@ -78,9 +79,10 @@
 		6878BBB72103854900AB8E28 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 		6878BBBA2103900900AB8E28 /* fightSelectScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fightSelectScene.sks; sourceTree = "<group>"; };
 		6878BBBC2103925900AB8E28 /* fightSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fightSelectScene.swift; sourceTree = "<group>"; };
+		6884077F211349560081C70C /* functionaryConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = functionaryConfig.json; path = excels/functionaryConfig.json; sourceTree = SOURCE_ROOT; };
+		68840780211349560081C70C /* houseConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = houseConfig.json; path = excels/houseConfig.json; sourceTree = SOURCE_ROOT; };
+		688407842113497E0081C70C /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 		689D451821076A2900C78489 /* SKScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScrollNode.swift; sourceTree = "<group>"; };
-		68B20A23210A1CB000B57749 /* functionaryConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = functionaryConfig.json; sourceTree = "<group>"; };
-		68B20A24210A1CB000B57749 /* houseConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = houseConfig.json; sourceTree = "<group>"; };
 		68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@2x.png"; sourceTree = "<group>"; };
 		68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@3x.png"; sourceTree = "<group>"; };
 		68DA4F9D2103A3940000ED93 /* houseItem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = houseItem.sks; sourceTree = "<group>"; };
@@ -241,8 +243,9 @@
 		68B20A22210A1C9500B57749 /* configs */ = {
 			isa = PBXGroup;
 			children = (
-				68B20A23210A1CB000B57749 /* functionaryConfig.json */,
-				68B20A24210A1CB000B57749 /* houseConfig.json */,
+				6884077F211349560081C70C /* functionaryConfig.json */,
+				68840780211349560081C70C /* houseConfig.json */,
+				688407832113497E0081C70C /* dataModel.xcdatamodeld */,
 			);
 			path = configs;
 			sourceTree = "<group>";
@@ -337,8 +340,9 @@
 				6878BBAF210384DC00AB8E28 /* naviBar@2x.png in Resources */,
 				68DA4FA22103A43F0000ED93 /* defaultImage@3x.png in Resources */,
 				6878BBB2210384F700AB8E28 /* mainScene.sks in Resources */,
+				68840781211349560081C70C /* functionaryConfig.json in Resources */,
+				68840782211349560081C70C /* houseConfig.json in Resources */,
 				68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */,
-				68B20A25210A1CB000B57749 /* functionaryConfig.json in Resources */,
 				6878BBAA210384DC00AB8E28 /* bg@3x.png in Resources */,
 				68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */,
 				68EB58C2210E21CA0077BF7D /* buttonBg@2x.png in Resources */,
@@ -350,7 +354,6 @@
 				6878BBAB210384DC00AB8E28 /* mainButton_green@2x.png in Resources */,
 				68EB58C1210E21CA0077BF7D /* buttonBg@3x.png in Resources */,
 				6878BBAE210384DC00AB8E28 /* mainButton_orange@3x.png in Resources */,
-				68B20A26210A1CB000B57749 /* houseConfig.json in Resources */,
 				68DA4F9E2103A3940000ED93 /* houseItem.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6878BB802103847300AB8E28 /* GameViewController.swift in Sources */,
+				688407852113497E0081C70C /* dataModel.xcdatamodeld in Sources */,
 				6878BBB62103853700AB8E28 /* mainScene.swift in Sources */,
 				68EB58C6210E27980077BF7D /* battleScene.swift in Sources */,
 				6878BB782103847300AB8E28 /* AppDelegate.swift in Sources */,
@@ -641,6 +645,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		688407832113497E0081C70C /* dataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				688407842113497E0081C70C /* dataModel.xcdatamodel */,
+			);
+			currentVersion = 688407842113497E0081C70C /* dataModel.xcdatamodel */;
+			path = dataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6878BB6C2103847300AB8E28 /* Project object */;
 }

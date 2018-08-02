@@ -7,9 +7,18 @@
 //
 
 import Foundation
+import CoreData
 class DataManager {
     static let shared = DataManager()
-    
+    var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer.init(name: "dataModel")
+        container.loadPersistentStores(completionHandler: {(des,err) in
+            if let erro = err {
+                fatalError("fail to load persistent store")
+            }
+        })
+        return container
+    }()
     func loadJsonData<TP:Codable>(fileName:String,givenType:TP.Type) -> TP? {
         guard let path = Bundle.main.path(forResource: fileName, ofType: "json") else {
             print("can't find file named \(fileName)")
