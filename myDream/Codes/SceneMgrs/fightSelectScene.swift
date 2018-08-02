@@ -8,7 +8,7 @@
 
 import UIKit
 import SpriteKit
-
+import CoreData
 
 class fightSelectScene: SKScene,SKButtonDelegate {
     //vars of uiElements
@@ -18,6 +18,7 @@ class fightSelectScene: SKScene,SKButtonDelegate {
     //vars of datas
     var houses: [House] = []
     var functionarys: [Functionary] = []
+    
     
     override func didMove(to view: SKView) {
         
@@ -50,6 +51,23 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         }
         houses = houseTemp
         functionarys = functionaryTemp
+        
+        //get house data
+        for oneHouse in houses {
+            if let _ = oneHouse.getSQLDataById(id: oneHouse.id) {
+              
+            }
+            else {
+                let relatedData = NSEntityDescription.insertNewObject(forEntityName: "HouseData", into: DataManager.shared.persistentContainer.viewContext)
+                if oneHouse.isFirstHouse == true {
+                    relatedData.setValue(1, forKey: "status")
+                }
+                else {
+                    relatedData.setValue(0, forKey: "status")
+                }
+            }
+        }
+        DataManager.shared.saveData()
     }
     func setUpDefaultView() {
         //back button

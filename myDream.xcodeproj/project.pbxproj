@@ -28,7 +28,7 @@
 		6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6878BBBC2103925900AB8E28 /* fightSelectScene.swift */; };
 		68840781211349560081C70C /* functionaryConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 6884077F211349560081C70C /* functionaryConfig.json */; };
 		68840782211349560081C70C /* houseConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 68840780211349560081C70C /* houseConfig.json */; };
-		688407852113497E0081C70C /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 688407832113497E0081C70C /* dataModel.xcdatamodeld */; };
+		68840788211350C30081C70C /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68840786211350C20081C70C /* dataModel.xcdatamodeld */; };
 		689D451921076A2900C78489 /* SKScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D451821076A2900C78489 /* SKScrollNode.swift */; };
 		68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */; };
 		68DA4F9A2103A2080000ED93 /* houseItem_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */; };
@@ -81,7 +81,7 @@
 		6878BBBC2103925900AB8E28 /* fightSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fightSelectScene.swift; sourceTree = "<group>"; };
 		6884077F211349560081C70C /* functionaryConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = functionaryConfig.json; path = excels/functionaryConfig.json; sourceTree = SOURCE_ROOT; };
 		68840780211349560081C70C /* houseConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = houseConfig.json; path = excels/houseConfig.json; sourceTree = SOURCE_ROOT; };
-		688407842113497E0081C70C /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
+		68840787211350C20081C70C /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 		689D451821076A2900C78489 /* SKScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScrollNode.swift; sourceTree = "<group>"; };
 		68DA4F972103A2080000ED93 /* houseItem_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@2x.png"; sourceTree = "<group>"; };
 		68DA4F982103A2080000ED93 /* houseItem_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "houseItem_bg@3x.png"; sourceTree = "<group>"; };
@@ -243,9 +243,9 @@
 		68B20A22210A1C9500B57749 /* configs */ = {
 			isa = PBXGroup;
 			children = (
+				68840786211350C20081C70C /* dataModel.xcdatamodeld */,
 				6884077F211349560081C70C /* functionaryConfig.json */,
 				68840780211349560081C70C /* houseConfig.json */,
-				688407832113497E0081C70C /* dataModel.xcdatamodeld */,
 			);
 			path = configs;
 			sourceTree = "<group>";
@@ -372,8 +372,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68840788211350C30081C70C /* dataModel.xcdatamodeld in Sources */,
 				6878BB802103847300AB8E28 /* GameViewController.swift in Sources */,
-				688407852113497E0081C70C /* dataModel.xcdatamodeld in Sources */,
 				6878BBB62103853700AB8E28 /* mainScene.swift in Sources */,
 				68EB58C6210E27980077BF7D /* battleScene.swift in Sources */,
 				6878BB782103847300AB8E28 /* AppDelegate.swift in Sources */,
@@ -647,12 +647,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		688407832113497E0081C70C /* dataModel.xcdatamodeld */ = {
+		68840786211350C20081C70C /* dataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				688407842113497E0081C70C /* dataModel.xcdatamodel */,
+				68840787211350C20081C70C /* dataModel.xcdatamodel */,
 			);
-			currentVersion = 688407842113497E0081C70C /* dataModel.xcdatamodel */;
+			currentVersion = 68840787211350C20081C70C /* dataModel.xcdatamodel */;
 			path = dataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

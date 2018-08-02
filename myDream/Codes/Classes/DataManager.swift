@@ -36,6 +36,15 @@ class DataManager {
         }
         return results
     }
+    
+    func saveData() {
+        do{
+           try self.persistentContainer.viewContext.save()
+        }
+        catch {
+            print("something is wrong with save data,info: \(error)")
+        }
+    }
 }
 
 

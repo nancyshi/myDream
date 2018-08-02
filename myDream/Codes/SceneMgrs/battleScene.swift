@@ -18,7 +18,6 @@ class battleScene: SKScene,SKButtonDelegate {
     var interactButton : SKButton?
     var functionaryNameLabel : SKLabelNode?
     var headIconNode : SKSpriteNode?
-    var funcDollorLabel : SKLabelNode?
     var house : House?
     
     override func didMove(to view: SKView) {
@@ -26,12 +25,11 @@ class battleScene: SKScene,SKButtonDelegate {
         interactButton = self.childNode(withName: "//interactButton") as? SKButton
         functionaryNameLabel = self.childNode(withName: "//nameLabel") as? SKLabelNode
         headIconNode = self.childNode(withName: "//headIconNode") as? SKSpriteNode
-        funcDollorLabel = self.childNode(withName: "//funcDollorLabel") as? SKLabelNode
+
         guard menuButton != nil,
             interactButton != nil,
             functionaryNameLabel != nil,
-            headIconNode != nil,
-            funcDollorLabel != nil else {
+            headIconNode != nil else {
                 print("something wrong with setup elements")
                 return
         }
@@ -42,7 +40,6 @@ class battleScene: SKScene,SKButtonDelegate {
             print("something wrong with get house data")
             return
         }
-        funcDollorLabel!.text = "$ " + String(house!.originDollor)
         guard let functionarys = DataManager.shared.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self) else {
             return
         }

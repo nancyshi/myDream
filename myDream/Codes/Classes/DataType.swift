@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreData
 struct Functionary : Codable {
     var imageName: String
     var id: Int
@@ -23,4 +23,15 @@ struct House : Codable {
     var dollorForPurchase: Int
     var functionaryId: Int
     var minReputationForPurchase: Int
+    var isFirstHouse:Bool
+    
+    func getSQLDataById(id givenId:Int) -> NSManagedObject? {
+        let fetchRequest = NSFetchRequest<HouseData>.init(entityName: "HouseData")
+        let predicate = NSPredicate.init(format: "id == %d", self.id)
+        fetchRequest.predicate = predicate
+        guard let result = try? DataManager.shared.persistentContainer.viewContext.fetch(fetchRequest) else {
+            return nil
+        }
+        return result[0]
+    }
 }
