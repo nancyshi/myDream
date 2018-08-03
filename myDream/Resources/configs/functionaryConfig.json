@@ -1,0 +1,23 @@
+[
+  {
+    "headIconName": "defaultImage", 
+    "imageName": "defaultImage", 
+    "id": 101, 
+    "dollorForInteract": 50, 
+    "name": "maria"
+  }, 
+  {
+    "headIconName": "defaultImage", 
+    "imageName": "defaultImage", 
+    "id": 102, 
+    "dollorForInteract": 200, 
+    "name": "coco"
+  }, 
+  {
+    "headIconName": "defaultImage", 
+    "imageName": "defaultImage", 
+    "id": 103, 
+    "dollorForInteract": 1000, 
+    "name": "lina"
+  }
+]

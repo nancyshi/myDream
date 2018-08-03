@@ -52,14 +52,15 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         houses = houseTemp
         functionarys = functionaryTemp
         
-        //get house data
+        //connect house data
         for oneHouse in houses {
             if let _ = oneHouse.getSQLDataById(id: oneHouse.id) {
               
             }
             else {
                 let relatedData = NSEntityDescription.insertNewObject(forEntityName: "HouseData", into: DataManager.shared.persistentContainer.viewContext)
-                if oneHouse.isFirstHouse == true {
+                relatedData.setValue(oneHouse.id, forKey: "id")
+                if oneHouse.sortOrder == 1 {
                     relatedData.setValue(1, forKey: "status")
                 }
                 else {
@@ -117,6 +118,8 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         scrollNode.container.size.height = containerMinHeight
         scrollNode.refreshPropoties()
         scrollNode.setContainerTopOrBottom(top: true)
+        
+        houseItems.sort(by: sortFunc(s1:s2:))
         var index = 0
         for oneHouseItem in houseItems {
             let yDistantFromTop = gapOfHouseItemToTopContainer + oneHouseItem.size.height/2 + (oneHouseItem.size.height + gapOfHouseItems) * CGFloat(index)
@@ -125,5 +128,9 @@ class fightSelectScene: SKScene,SKButtonDelegate {
             scrollNode.container.addChild(oneHouseItem)
             index = index + 1
         }
+    }
+    
+    func sortFunc(s1:HouseItem,s2:HouseItem) -> Bool {
+        return s1.house!.sortOrder < s2.house!.sortOrder
     }
 }

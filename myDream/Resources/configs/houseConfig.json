@@ -1,0 +1,32 @@
+[
+  {
+    "dollorForPurchase": 10000, 
+    "minStake": 10, 
+    "maxStake": 200, 
+    "name": "welcom house", 
+    "minReputationForPurchase": 100, 
+    "functionaryId": 101, 
+    "sortOrder": 2,
+    "id": 1001
+  }, 
+  {
+    "dollorForPurchase": 100000, 
+    "minStake": 200, 
+    "maxStake": 4000, 
+    "name": "sexy house", 
+    "minReputationForPurchase": 500, 
+    "functionaryId": 102, 
+    "sortOrder": 3,
+    "id": 1002
+  }, 
+  {
+    "dollorForPurchase": 1000000, 
+    "minStake": 1000, 
+    "maxStake": 20000, 
+    "name": "sunshine", 
+    "minReputationForPurchase": 2000, 
+    "functionaryId": 103, 
+    "sortOrder": 1, 
+    "id": 1003
+  }
+]

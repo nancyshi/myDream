@@ -23,7 +23,7 @@ struct House : Codable {
     var dollorForPurchase: Int
     var functionaryId: Int
     var minReputationForPurchase: Int
-    var isFirstHouse:Bool
+    var sortOrder:Int
     
     func getSQLDataById(id givenId:Int) -> NSManagedObject? {
         let fetchRequest = NSFetchRequest<HouseData>.init(entityName: "HouseData")
@@ -32,6 +32,11 @@ struct House : Codable {
         guard let result = try? DataManager.shared.persistentContainer.viewContext.fetch(fetchRequest) else {
             return nil
         }
-        return result[0]
+        if result.count == 0{
+            return nil
+        }
+        else {
+            return result[0]
+        }
     }
 }
