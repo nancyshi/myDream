@@ -25,8 +25,6 @@ protocol SKButtonDelegate {
 
 class SKButton: SKSpriteNode {
     
-    
-    
     var type = SKButtonType.BackGround {
         didSet(old) {
             if type == .Label {
@@ -68,6 +66,11 @@ class SKButton: SKSpriteNode {
             }
         }
     }
+    var isEnabled:Bool = true {
+        didSet(old) {
+            
+        }
+    }
     var buttonLabel:SKLabelNode = SKLabelNode(text: "buttonLabel")
     var buttonLabelSize:CGSize {
         get {
@@ -78,6 +81,8 @@ class SKButton: SKSpriteNode {
         }
     }
     var holdTexture:SKTexture?
+    var disabledTexture:SKTexture?
+    var disabledColorForLabel = UIColor.gray
     var holdColorForLabel = UIColor.red
     var target : SKButtonDelegate?
     var isResponseMoved = true

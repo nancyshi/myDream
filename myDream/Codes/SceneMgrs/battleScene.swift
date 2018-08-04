@@ -8,8 +8,11 @@
 
 import UIKit
 import SpriteKit
-
-
+enum gameLogicStatus {
+    case watingForStake
+    case watingForDecide
+    
+}
 class battleScene: SKScene,SKButtonDelegate {
     func onClick(button: SKButton) {
         if button == naviBar?.backButton! {
@@ -37,7 +40,7 @@ class battleScene: SKScene,SKButtonDelegate {
     var relatedFunctionary: Functionary?
     
     //vars of game logic
-    
+    var logicStatus : gameLogicStatus = .watingForStake
     
     override func didMove(to view: SKView) {
 
@@ -65,6 +68,11 @@ class battleScene: SKScene,SKButtonDelegate {
         functionaryNameLabel!.text = relatedFunctionary?.name
         let texture = SKTexture(imageNamed: (relatedFunctionary?.imageName)!)
         headIconNode!.texture = texture
+        
+        button01?.buttonLabel.text = "Min"
+        button02?.buttonLabel.text = "Max"
+        button03?.buttonLabel.text = "Select"
+        button04?.buttonLabel.text = "PreTime"
     }
     
 
