@@ -10,15 +10,12 @@ import UIKit
 import SpriteKit
 import CoreData
 
+
 class fightSelectScene: SKScene,SKButtonDelegate {
     //vars of uiElements
-    var backButton : SKButton?
+    var naviBar: NaviBar?
     var scrollNode : SKScrollNode = SKScrollNode()
     var houseItems = [HouseItem]()
-    //vars of datas
-    var houses: [House] = []
-    var functionarys: [Functionary] = []
-    
     
     override func didMove(to view: SKView) {
         
@@ -30,7 +27,7 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         }
     }
     func onClick(button: SKButton) {
-        if button == backButton! {
+        if button == naviBar?.backButton! {
             if let scene = SKScene(fileNamed: "mainScene") {
                 scene.scaleMode = .aspectFit
                 self.view?.presentScene(scene)
@@ -40,22 +37,35 @@ class fightSelectScene: SKScene,SKButtonDelegate {
             if let scene = SKScene(fileNamed: "battleScene") as? battleScene {
                 scene.scaleMode = .aspectFit
                 scene.house = (button as! HouseItem).house
+                scene.relatedFunctionary = DataManager.shared.getFunctionaryById(id: (scene.house?.functionaryId)!)
                 self.view?.presentScene(scene)
             }
         }
     }
     func setUpDatas() {
-        guard let houseTemp = DataManager.shared.loadJsonData(fileName: "houseConfig", givenType: [House].self),
-            let functionaryTemp = DataManager.shared.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self) else {
+
+        guard DataManager.shared.houseConfig != nil,
+            DataManager.shared.functionaryConfig != nil else {
+                print("no house or functionary data")
                 return
         }
-        houses = houseTemp
-        functionarys = functionaryTemp
         
         //connect house data
-        for oneHouse in houses {
-            if let _ = oneHouse.getSQLDataById(id: oneHouse.id) {
-              
+        for oneHouse in DataManager.shared.houseConfig! {
+            if let result = oneHouse.getSQLDataById(id: oneHouse.id) {
+                //reset SQL data each time when the app launch , this is just for develop use
+                DataManager.shared.persistentContainer.viewContext.delete(result)
+                let relatedData = NSEntityDescription.insertNewObject(forEntityName: "HouseData", into: DataManager.shared.persistentContainer.viewContext)
+                relatedData.setValue(oneHouse.id, forKey: "id")
+                if oneHouse.sortOrder == 1 {
+                    relatedData.setValue(1, forKey: "status")
+                }
+                else {
+                    relatedData.setValue(0, forKey: "status")
+                }
+                
+                
+                
             }
             else {
                 let relatedData = NSEntityDescription.insertNewObject(forEntityName: "HouseData", into: DataManager.shared.persistentContainer.viewContext)
@@ -71,19 +81,9 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         DataManager.shared.saveData()
     }
     func setUpDefaultView() {
-        //back button
-        backButton = SKButton.init(type: .Label)
-        if backButton != nil {
-            //config back label
-            backButton?.target = self
-            backButton?.buttonLabel.text = "< BACK"
-            backButton?.buttonLabel.fontName = "PingFang SC"
-            backButton?.buttonLabel.fontSize = 20
-            backButton?.position = CGPoint(x: -162.613, y: -6.1)
-            if let nav = self.childNode(withName: "naviBar") as? SKSpriteNode {
-                nav.addChild(backButton!)
-            }
-        }
+        //naviBar
+        naviBar = self.childNode(withName: "//naviBar") as? NaviBar
+        naviBar?.backButton?.target = self
         //content
         let maskNode = SKSpriteNode.init()
         maskNode.size = CGSize(width: 414, height: 672)
@@ -98,9 +98,9 @@ class fightSelectScene: SKScene,SKButtonDelegate {
     }
     
     func changeDefaultViewByData() {
-        for oneHouse in houses {
+        for oneHouse in DataManager.shared.houseConfig! {
             let oneHouseItem = HouseItem.init(aHouse: oneHouse)
-            for oneFunctionary in functionarys {
+            for oneFunctionary in DataManager.shared.functionaryConfig! {
                 if oneHouse.functionaryId == oneFunctionary.id {
                     let texture = SKTexture(imageNamed: oneFunctionary.headIconName)
                     oneHouseItem.headIconNode.texture = texture

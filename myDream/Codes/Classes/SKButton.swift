@@ -94,9 +94,40 @@ class SKButton: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.isUserInteractionEnabled = true
-        buttonLabel.zPosition = self.zPosition + 1
-        buttonLabel.isHidden = true
-        self.addChild(buttonLabel)
+//        buttonLabel.zPosition = self.zPosition + 1
+//        buttonLabel.isHidden = true
+//        self.addChild(buttonLabel)
+        if let typeInfo = self.userData?.value(forKey: "buttonType") as? Int {
+            switch typeInfo {
+            case 0://represent button type is background
+                break
+            case 1://represent button type is label
+                self.type = .Label
+                if let label = self.childNode(withName: "//buttonLabel") as? SKLabelNode {
+                    buttonLabel = label
+                }
+                else {
+                    buttonLabel.isHidden = false
+                }
+                self.color = UIColor.clear
+                self.texture = nil
+                self.size = buttonLabel.frame.size
+                break
+            case 2://represent button type is normal
+                self.type = .Normal
+                if let label = self.childNode(withName: "//buttonLabel") as? SKLabelNode {
+                    buttonLabel = label
+                }
+                else {
+                    buttonLabel.isHidden = false
+                }
+                break
+            default:
+                //represent button type is background
+                break
+            }
+        }
+        
     }
     
     convenience init(type:SKButtonType) {
@@ -109,6 +140,7 @@ class SKButton: SKSpriteNode {
             self.type = .Label
             buttonLabel.isHidden = false
             self.color = UIColor.clear
+            self.texture = nil
             self.size = buttonLabel.frame.size
         }
         else if type == SKButtonType.BackGround {

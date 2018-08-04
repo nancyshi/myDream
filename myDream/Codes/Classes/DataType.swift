@@ -25,7 +25,7 @@ struct House : Codable {
     var minReputationForPurchase: Int
     var sortOrder:Int
     
-    func getSQLDataById(id givenId:Int) -> NSManagedObject? {
+    func getSQLDataById(id givenId:Int) -> HouseData? {
         let fetchRequest = NSFetchRequest<HouseData>.init(entityName: "HouseData")
         let predicate = NSPredicate.init(format: "id == %d", self.id)
         fetchRequest.predicate = predicate

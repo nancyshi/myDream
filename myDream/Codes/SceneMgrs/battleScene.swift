@@ -9,58 +9,64 @@
 import UIKit
 import SpriteKit
 
+
 class battleScene: SKScene,SKButtonDelegate {
     func onClick(button: SKButton) {
-        
-    }
-    
-    var menuButton : SKButton?
-    var interactButton : SKButton?
-    var functionaryNameLabel : SKLabelNode?
-    var headIconNode : SKSpriteNode?
-    var house : House?
-    
-    override func didMove(to view: SKView) {
-        menuButton = self.childNode(withName: "//menuButton") as? SKButton
-        interactButton = self.childNode(withName: "//interactButton") as? SKButton
-        functionaryNameLabel = self.childNode(withName: "//nameLabel") as? SKLabelNode
-        headIconNode = self.childNode(withName: "//headIconNode") as? SKSpriteNode
-
-        guard menuButton != nil,
-            interactButton != nil,
-            functionaryNameLabel != nil,
-            headIconNode != nil else {
-                print("something wrong with setup elements")
-                return
-        }
-        self.setUpButtonLabel(button: menuButton!, labelText: "Menu")
-        self.setUpButtonLabel(button: interactButton!, labelText: "Interact")
-        
-        guard house != nil else {
-            print("something wrong with get house data")
-            return
-        }
-        guard let functionarys = DataManager.shared.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self) else {
-            return
-        }
-        for oneFunc in functionarys {
-            if house!.functionaryId == oneFunc.id {
-                functionaryNameLabel?.text = oneFunc.name
-                self.headIconNode!.texture = SKTexture(imageNamed: oneFunc.headIconName)
-                break
+        if button == naviBar?.backButton! {
+            if let scene = SKScene(fileNamed: "fightSelectScene") as? fightSelectScene {
+                scene.scaleMode = .aspectFit
+                self.view?.presentScene(scene)
             }
         }
+    }
+    //vars of ui elements
+    //naviBar
+    var naviBar: NaviBar?
+    //functionary info
+    var functionaryNameLabel : SKLabelNode?
+    var headIconNode : SKSpriteNode?
+    var interactButton: SKButton?
+    //operate layer
+    var button01: SKButton?
+    var button02: SKButton?
+    var button03: SKButton?
+    var button04: SKButton?
+    //vars of datas
+    //house and relatedFunctionary will be init before scene has been present
+    var house : House?
+    var relatedFunctionary: Functionary?
+    
+    //vars of game logic
+    
+    
+    override func didMove(to view: SKView) {
+
+        //setup view
+        naviBar = self.childNode(withName: "//naviBar") as? NaviBar
+        functionaryNameLabel = self.childNode(withName: "//nameLabel") as? SKLabelNode
+        headIconNode = self.childNode(withName: "//headIconNode") as? SKSpriteNode
+        interactButton = self.childNode(withName: "//interactButton") as? SKButton
+        button01 = self.childNode(withName: "//button01") as? SKButton
+        button02 = self.childNode(withName: "//button02") as? SKButton
+        button03 = self.childNode(withName: "//button03") as? SKButton
+        button04 = self.childNode(withName: "//button04") as? SKButton
         
+        guard naviBar != nil,
+              functionaryNameLabel != nil,
+              headIconNode != nil,
+              interactButton != nil,
+              button01 != nil,
+              button02 != nil,
+              button03 != nil,
+              button04 != nil else {
+                return
+              }
+        naviBar!.backButton?.target = self
+        functionaryNameLabel!.text = relatedFunctionary?.name
+        let texture = SKTexture(imageNamed: (relatedFunctionary?.imageName)!)
+        headIconNode!.texture = texture
     }
     
-    func setUpButtonLabel(button oneButton:SKButton,labelText text:String) {
-        oneButton.buttonLabel.text = text
-        oneButton.buttonLabel.fontName = "PingFang SC Semibold"
-        oneButton.buttonLabel.fontSize = 16
-        oneButton.buttonLabel.verticalAlignmentMode = .center
-        oneButton.buttonLabel.isHidden = false
-        
-        oneButton.target = self
-    }
+
     
 }

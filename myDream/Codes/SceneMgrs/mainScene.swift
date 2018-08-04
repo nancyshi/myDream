@@ -13,29 +13,22 @@ class mainScene: SKScene,SKButtonDelegate {
     
     var button_fight : SKButton?
     var button_relaxtion : SKButton?
+    var naviBar :NaviBar?
     
     override func didMove(to view: SKView) {
+        
+        naviBar = self.childNode(withName: "//naviBar") as? NaviBar
         button_fight = self.childNode(withName: "button_fight") as? SKButton
         button_relaxtion = self.childNode(withName: "button_relaxtion") as? SKButton
-        if button_fight != nil {
-            button_fight?.target = self
-            button_fight!.type = .Normal
-            self.setLabel(label: button_fight!.buttonLabel,text: "Fight")
+        guard button_fight != nil,
+            button_relaxtion != nil else {
+                print("no button_fight or button_relaxtion")
+                return
         }
-        if button_relaxtion != nil {
-            button_relaxtion?.target = self
-            button_relaxtion!.type = .Normal
-            self.setLabel(label: button_relaxtion!.buttonLabel,text: "Relaxtion")
-        }
+        button_fight!.target = self
+        button_relaxtion!.target = self
     }
-    func setLabel(label:SKLabelNode,text:String) {
-        label.text = text
-        label.fontName = "PingFang SC"
-        label.fontColor = UIColor.white
-        label.fontSize = 36
-        label.position = CGPoint(x: 0, y: -40)
-    }
-    
+
     func onClick(button: SKButton) {
         
         if button == button_fight! {

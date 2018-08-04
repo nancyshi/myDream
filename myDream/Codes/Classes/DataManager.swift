@@ -19,6 +19,12 @@ class DataManager {
         })
         return container
     }()
+    var houseConfig: [House]?
+    var functionaryConfig: [Functionary]?
+    init() {
+        houseConfig = self.loadJsonData(fileName: "houseConfig", givenType: [House].self)
+        functionaryConfig = self.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self)
+    }
     func loadJsonData<TP:Codable>(fileName:String,givenType:TP.Type) -> TP? {
         guard let path = Bundle.main.path(forResource: fileName, ofType: "json") else {
             print("can't find file named \(fileName)")
@@ -44,6 +50,33 @@ class DataManager {
         catch {
             print("something is wrong with save data,info: \(error)")
         }
+    }
+    func getPlayerData() -> PlayerData? {
+        let fetchRequest = NSFetchRequest<PlayerData>(entityName: "PlayerData")
+        guard let result = try? persistentContainer.viewContext.fetch(fetchRequest) else {
+            print("something wrong with get playerData")
+            return nil
+        }
+        if result.count == 0 {
+            let initPlayerData = NSEntityDescription.insertNewObject(forEntityName: "PlayerData", into: persistentContainer.viewContext)
+            initPlayerData.setValue(100, forKey: "currentDollor")
+            self.saveData()
+            return initPlayerData as? PlayerData
+        }
+        return result[0]
+        
+    }
+    func getFunctionaryById(id givenId:Int) -> Functionary? {
+        guard functionaryConfig != nil else {
+            return nil
+        }
+        for oneFunctionary in functionaryConfig! {
+            if oneFunctionary.id == givenId {
+                
+                return oneFunctionary
+            }
+        }
+        return nil
     }
 }
 
