@@ -43,6 +43,9 @@ class SKButton: SKSpriteNode {
     var status = SKButtonStatus.Normal{
         didSet(old) {
             if status != old {
+                guard isEnabled == true else {
+                    return
+                }
                 if type == .BackGround {
                     if self.holdTexture != nil {
                         let temp = self.texture
@@ -54,7 +57,7 @@ class SKButton: SKSpriteNode {
                     let temp = buttonLabel.fontColor
                     buttonLabel.fontColor = self.holdColorForLabel
                     self.holdColorForLabel = temp!
-                    
+
                 }
                 else if type == .Normal {
                     if self.holdTexture != nil {
@@ -64,11 +67,22 @@ class SKButton: SKSpriteNode {
                     }
                 }
             }
+
         }
     }
     var isEnabled:Bool = true {
         didSet(old) {
-            
+            if isEnabled != old {
+                //try to change the performance
+                if self.disabledTexture != nil {
+                    let temp = self.texture
+                    self.texture = self.disabledTexture
+                    self.disabledTexture = temp
+                }
+                let temp1 = buttonLabel.fontColor
+                buttonLabel.fontColor = self.disabledColorForLabel
+                disabledColorForLabel = temp1!
+            }
         }
     }
     var buttonLabel:SKLabelNode = SKLabelNode(text: "buttonLabel")
@@ -93,15 +107,11 @@ class SKButton: SKSpriteNode {
         buttonLabel.zPosition = self.zPosition + 1
         buttonLabel.isHidden = true
         self.addChild(buttonLabel)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.isUserInteractionEnabled = true
-//        buttonLabel.zPosition = self.zPosition + 1
-//        buttonLabel.isHidden = true
-//        self.addChild(buttonLabel)
         if let typeInfo = self.userData?.value(forKey: "buttonType") as? Int {
             switch typeInfo {
             case 0://represent button type is background
