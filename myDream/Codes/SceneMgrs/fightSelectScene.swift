@@ -34,6 +34,10 @@ class fightSelectScene: SKScene,SKButtonDelegate {
             }
         }
         else if button is HouseItem {
+            guard (button as! HouseItem).isEnabled == true else {
+                print("the button is disabled , there should be a notification")
+                return
+            }
             if let scene = SKScene(fileNamed: "battleScene") as? battleScene {
                 scene.scaleMode = .aspectFit
                 scene.house = (button as! HouseItem).house
