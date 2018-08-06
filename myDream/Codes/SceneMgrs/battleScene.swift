@@ -22,7 +22,7 @@ class battleScene: SKScene,SKButtonDelegate {
             }
         }
         else if button == button01 {
-            if button.buttonLabel.text == "Min" {
+            if self.logicStatus == .watingForStake {
                 self.decideStake(stake: (house?.minStake)!)
             }
         }
@@ -51,6 +51,8 @@ class battleScene: SKScene,SKButtonDelegate {
     //vars of game logic
     var logicStatus : gameLogicStatus = .watingForStake
     var preStake: Int?
+    var cards:[Card] = Card.getWholeCards(multiper: 2)
+    var usedCards:[Card] = [Card]()
     
     override func didMove(to view: SKView) {
 
@@ -108,17 +110,26 @@ class battleScene: SKScene,SKButtonDelegate {
             moveDown.timingMode = .easeInEaseOut
             operationLayer.run(moveDown)
         }
-        //change player's dollor
+        //change player's dollor and animate player's dollor label
         let currentDollor = playerCurrentDollor - givenStake
         playerInfo?.setValue(currentDollor, forKey: "currentDollor")
-        naviBar?.dollorLabel?.text = String(currentDollor)
-        
+        let action = SKAction.customAction(withDuration:0.3, actionBlock: {
+            labelNode,time in
+            if let node = labelNode as? SKLabelNode {
+                let range = givenStake
+                let temp = Float((time/0.3)) * Float(range)
+                let temp1 = Int(ceil(temp))
+                let animationedCurrentDollor = playerCurrentDollor - temp1
+                node.text = String(animationedCurrentDollor)
+            }
+        })
+        action.timingMode = .easeInEaseOut
+        naviBar?.dollorLabel?.run(action)
         //setup bet label
         betLabel?.text = "bet :"+" $ " + String(givenStake)
         betLabel?.isHidden = false
         
         
     }
-    
     
 }
