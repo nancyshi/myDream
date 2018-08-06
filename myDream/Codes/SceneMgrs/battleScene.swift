@@ -13,6 +13,7 @@ enum gameLogicStatus {
     case watingForDecide
     
 }
+
 class battleScene: SKScene,SKButtonDelegate {
     func onClick(button: SKButton) {
         if button == naviBar?.backButton! {
@@ -42,6 +43,9 @@ class battleScene: SKScene,SKButtonDelegate {
     
     //game content layer
     var betLabel: SKLabelNode?
+    var playerPointLabel: SKLabelNode?
+    var gapOfCards : Int = 34
+    
     //vars of datas
     //house and relatedFunctionary will be init before scene has been present from fightSelectScene
     var house : House?
@@ -52,7 +56,15 @@ class battleScene: SKScene,SKButtonDelegate {
     var logicStatus : gameLogicStatus = .watingForStake
     var preStake: Int?
     var cards:[Card] = Card.getWholeCards(multiper: 2)
+    var presentedCards:[Card] = [Card]()
     var usedCards:[Card] = [Card]()
+    var playerCards:[Card] = [Card]()
+    var functionaryCards: [Card] = [Card]()
+    var playerCurrentPoint :Int?
+    var playerAnotherPoint: Int?
+    var functionaryCurrentPoint : Int?
+    var functionaryAnotherPoint : Int?
+    
     
     override func didMove(to view: SKView) {
 
@@ -128,8 +140,16 @@ class battleScene: SKScene,SKButtonDelegate {
         //setup bet label
         betLabel?.text = "bet :"+" $ " + String(givenStake)
         betLabel?.isHidden = false
+    }
+    func distributOneCardToPlayer() {
+        //datas
+        let randomNum = Int(arc4random()) % cards.count
+        let selectedCard = cards[randomNum]
+        playerCurrentPoint = (playerCurrentPoint == nil) ? selectedCard.value : playerCurrentPoint! + selectedCard.value
+        cards.remove(at: randomNum)
+        presentedCards.append(selectedCard)
         
+        //performance
         
     }
-    
 }
