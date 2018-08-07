@@ -152,4 +152,14 @@ class battleScene: SKScene,SKButtonDelegate {
         //performance
         
     }
+    func layoutItemsHorizontallyCentered(originPoint givenPoint:CGPoint, gap givenGap:Float, items givenItems:[SKNode]) {
+        guard items.count > 0 else{
+            return
+        }
+        let wholeLengh = (items.count - 1) * gap + givenItems[0].size.width
+        let leftSideOffsetX = originPoint.x - wholeLengh/2
+        for (index,oneItem) in givenItems {
+            oneItem.position.x = leftSideOffsetX + oneItem.size.width/2 + index * gap
+        }
+    }
 }
