@@ -44,7 +44,7 @@ class battleScene: SKScene,SKButtonDelegate {
     //game content layer
     var betLabel: SKLabelNode?
     var playerPointLabel: SKLabelNode?
-    var gapOfCards : Int = 34
+    var gapOfCards : Float = 34
     
     //vars of datas
     //house and relatedFunctionary will be init before scene has been present from fightSelectScene
@@ -58,13 +58,9 @@ class battleScene: SKScene,SKButtonDelegate {
     var cards:[Card] = Card.getWholeCards(multiper: 2)
     var presentedCards:[Card] = [Card]()
     var usedCards:[Card] = [Card]()
-    var playerCards:[Card] = [Card]()
-    var functionaryCards: [Card] = [Card]()
-    var playerCurrentPoint :Int?
-    var playerAnotherPoint: Int?
-    var functionaryCurrentPoint : Int?
-    var functionaryAnotherPoint : Int?
-    
+    var player = PlayerOfBlackJack.init(isFunctionary: false)
+    var functionary = PlayerOfBlackJack.init(isFunctionary: true)
+    let insertCardAnimTime : TimeInterval = 0.3
     
     override func didMove(to view: SKView) {
 
@@ -140,26 +136,40 @@ class battleScene: SKScene,SKButtonDelegate {
         //setup bet label
         betLabel?.text = "bet :"+" $ " + String(givenStake)
         betLabel?.isHidden = false
+        
+        self.distributeOneCard(to: player, isBack: false, completetion:{
+            self.distributeOneCard(to: self.player, isBack: false, completetion: {
+            })
+        })
     }
-    func distributOneCardToPlayer() {
-        //datas
+    func distributeOneCard(to givenPlayer:PlayerOfBlackJack,isBack givenIsBack:Bool,completetion:@escaping () -> Void) {
+        //set up datas
         let randomNum = Int(arc4random()) % cards.count
         let selectedCard = cards[randomNum]
-        playerCurrentPoint = (playerCurrentPoint == nil) ? selectedCard.value : playerCurrentPoint! + selectedCard.value
         cards.remove(at: randomNum)
+        givenPlayer.cards.append(selectedCard)
         presentedCards.append(selectedCard)
+        //present performance
+        if givenIsBack == true {
+            selectedCard.cardNode.texture = selectedCard.cardBackTextureBlue
+        }
+        selectedCard.position = CGPoint(x: 258.196, y: -179.5)
+        if let contentLayer = self.childNode(withName: "//gameContent") {
+            contentLayer.addChild(selectedCard)
+        }
+        let originPoint = givenPlayer.isFunctionary ? CGPoint.zero : CGPoint(x: 2.634, y: -180.588)
+        let cardsPositionsWillBe = givenPlayer.distributeCardsHorizontally(originPoint: originPoint, gap: gapOfCards)
         
-        //performance
+        for index in 0 ... cardsPositionsWillBe.count - 1 {
+            var action = SKAction.move(to: cardsPositionsWillBe[index], duration: insertCardAnimTime)
+            action.timingMode = .easeInEaseOut
+            if index == cardsPositionsWillBe.count - 1 {
+                let newAction = SKAction.sequence([action,SKAction.run(completetion)])
+                action = SKAction.sequence([action,newAction])
+            }
+            givenPlayer.cards[index].run(action)
+        }
         
     }
-    func layoutItemsHorizontallyCentered(originPoint givenPoint:CGPoint, gap givenGap:Float, items givenItems:[SKNode]) {
-        guard items.count > 0 else{
-            return
-        }
-        let wholeLengh = (items.count - 1) * gap + givenItems[0].size.width
-        let leftSideOffsetX = originPoint.x - wholeLengh/2
-        for (index,oneItem) in givenItems {
-            oneItem.position.x = leftSideOffsetX + oneItem.size.width/2 + index * gap
-        }
-    }
+    
 }

@@ -12,8 +12,8 @@
 		686A655121157B800030C298 /* NaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A655021157B800030C298 /* NaviBar.swift */; };
 		686A655321157C230030C298 /* naviBar.sks in Resources */ = {isa = PBXBuildFile; fileRef = 686A655221157C230030C298 /* naviBar.sks */; };
 		686A65552116154C0030C298 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A65542116154C0030C298 /* Card.swift */; };
-		686A6591211617E70030C298 /* back_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A6557211617E70030C298 /* back_blue.png */; };
-		686A6592211617E70030C298 /* back_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A6558211617E70030C298 /* back_red.png */; };
+		686A6591211617E70030C298 /* back_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A6557211617E70030C298 /* back_blue@2x.png */; };
+		686A6592211617E70030C298 /* back_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A6558211617E70030C298 /* back_red@2x.png */; };
 		686A6593211617E70030C298 /* c_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A655A211617E70030C298 /* c_10.png */; };
 		686A6594211617E70030C298 /* c_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A655B211617E70030C298 /* c_2.png */; };
 		686A6595211617E70030C298 /* c_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 686A655C211617E70030C298 /* c_3.png */; };
@@ -95,6 +95,7 @@
 		68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */; };
 		68DA4FA22103A43F0000ED93 /* defaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */; };
 		68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA4FA32103A5CA0000ED93 /* HouseItem.swift */; };
+		68E478AC211B24FF003440E9 /* PlayerOfBlackJack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E478AB211B24FF003440E9 /* PlayerOfBlackJack.swift */; };
 		68E90B60210CCF5900F848CF /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E90B5F210CCF5900F848CF /* DataType.swift */; };
 		68E90B62210CD45200F848CF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E90B61210CD45200F848CF /* DataManager.swift */; };
 		68EB58BE210E1DA40077BF7D /* battleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68EB58BD210E1DA40077BF7D /* battleScene.sks */; };
@@ -122,8 +123,8 @@
 		686A655021157B800030C298 /* NaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviBar.swift; sourceTree = "<group>"; };
 		686A655221157C230030C298 /* naviBar.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = naviBar.sks; sourceTree = "<group>"; };
 		686A65542116154C0030C298 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		686A6557211617E70030C298 /* back_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_blue.png; sourceTree = "<group>"; };
-		686A6558211617E70030C298 /* back_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_red.png; sourceTree = "<group>"; };
+		686A6557211617E70030C298 /* back_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_blue@2x.png"; sourceTree = "<group>"; };
+		686A6558211617E70030C298 /* back_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_red@2x.png"; sourceTree = "<group>"; };
 		686A655A211617E70030C298 /* c_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_10.png; sourceTree = "<group>"; };
 		686A655B211617E70030C298 /* c_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_2.png; sourceTree = "<group>"; };
 		686A655C211617E70030C298 /* c_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_3.png; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 		68DA4F9F2103A43F0000ED93 /* defaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@2x.png"; sourceTree = "<group>"; };
 		68DA4FA02103A43F0000ED93 /* defaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@3x.png"; sourceTree = "<group>"; };
 		68DA4FA32103A5CA0000ED93 /* HouseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseItem.swift; sourceTree = "<group>"; };
+		68E478AB211B24FF003440E9 /* PlayerOfBlackJack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOfBlackJack.swift; sourceTree = "<group>"; };
 		68E90B5F210CCF5900F848CF /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		68E90B61210CD45200F848CF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		68EB58BD210E1DA40077BF7D /* battleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = battleScene.sks; sourceTree = "<group>"; };
@@ -241,8 +243,8 @@
 		686A6556211617E70030C298 /* PokerResource */ = {
 			isa = PBXGroup;
 			children = (
-				686A6557211617E70030C298 /* back_blue.png */,
-				686A6558211617E70030C298 /* back_red.png */,
+				686A6557211617E70030C298 /* back_blue@2x.png */,
+				686A6558211617E70030C298 /* back_red@2x.png */,
 				686A6559211617E70030C298 /* Club */,
 				686A6567211617E70030C298 /* Diamond */,
 				686A6575211617E70030C298 /* Heart */,
@@ -459,6 +461,7 @@
 				68E90B61210CD45200F848CF /* DataManager.swift */,
 				686A655021157B800030C298 /* NaviBar.swift */,
 				686A65542116154C0030C298 /* Card.swift */,
+				68E478AB211B24FF003440E9 /* PlayerOfBlackJack.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -592,7 +595,7 @@
 				68DA4F992103A2080000ED93 /* houseItem_bg@2x.png in Resources */,
 				686A6596211617E70030C298 /* c_4.png in Resources */,
 				686A65B8211617E70030C298 /* h_K.png in Resources */,
-				686A6591211617E70030C298 /* back_blue.png in Resources */,
+				686A6591211617E70030C298 /* back_blue@2x.png in Resources */,
 				68EB58C2210E21CA0077BF7D /* buttonBg@2x.png in Resources */,
 				686A65A3211617E70030C298 /* d_4.png in Resources */,
 				686A6595211617E70030C298 /* c_3.png in Resources */,
@@ -606,7 +609,7 @@
 				686A65A7211617E70030C298 /* d_8.png in Resources */,
 				6878BBBB2103900900AB8E28 /* fightSelectScene.sks in Resources */,
 				686A6593211617E70030C298 /* c_10.png in Resources */,
-				686A6592211617E70030C298 /* back_red.png in Resources */,
+				686A6592211617E70030C298 /* back_red@2x.png in Resources */,
 				686A659A211617E70030C298 /* c_8.png in Resources */,
 				68EB58BE210E1DA40077BF7D /* battleScene.sks in Resources */,
 				686A6597211617E70030C298 /* c_5.png in Resources */,
@@ -664,6 +667,7 @@
 				6878BBBD2103925900AB8E28 /* fightSelectScene.swift in Sources */,
 				6878BBB82103854900AB8E28 /* SKButton.swift in Sources */,
 				68E90B60210CCF5900F848CF /* DataType.swift in Sources */,
+				68E478AC211B24FF003440E9 /* PlayerOfBlackJack.swift in Sources */,
 				68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */,
 				68E90B62210CD45200F848CF /* DataManager.swift in Sources */,
 				689D451921076A2900C78489 /* SKScrollNode.swift in Sources */,

@@ -20,6 +20,7 @@ class Card: SKNode {
     private override init() {
         super.init()
         cardNode = SKSpriteNode.init(imageNamed: "c_A")
+        cardNode.size = CGSize(width: 67, height: 105)
         originTexture = cardNode.texture
         self.addChild(cardNode)
     }
@@ -43,10 +44,10 @@ class Card: SKNode {
                 let key = pre + "_" + String(index)
                 dic[key] = index
             }
-            dic[pre + "A"] = 1
-            dic[pre + "J"] = 10
-            dic[pre + "Q"] = 10
-            dic[pre + "K"] = 10
+            dic[pre + "_A"] = 1
+            dic[pre + "_J"] = 10
+            dic[pre + "_Q"] = 10
+            dic[pre + "_K"] = 10
         }
         var result = [Card]()
         for (key,value) in dic {
