@@ -48,4 +48,40 @@ class PlayerOfBlackJack: SKNode {
         }
         return result
     }
+    func getPointAndAnotherPoint() -> (thePoint:Int,theAnotherPoint:Int?) {
+        guard self.cards.count > 0 else {
+            print("cards of player is empty")
+            return (0,nil)
+        }
+        var pointResult = 0
+        var isAinCards = false
+        for oneCard in self.cards {
+            pointResult += oneCard.value
+            if oneCard.value == 1 {
+                isAinCards = true
+            }
+        }
+        var anotherPointResult = isAinCards ? pointResult + 10 : nil
+        if anotherPointResult != nil {
+            if anotherPointResult! > 21 {
+                anotherPointResult = nil
+            }
+        }
+        return (pointResult,anotherPointResult)
+    }
+    func updatePointValues() {
+        self.Point = self.getPointAndAnotherPoint().thePoint
+        self.anotherPoint = self.getPointAndAnotherPoint().theAnotherPoint
+    }
+    func setUpPointLabel() {
+        guard self.isFunctionary == false else {
+            print("functionary will have no pointlabel to performance , no need to do this")
+            return
+        }
+        self.pointLabel.position = CGPoint(x: -1.362, y: -114.75)
+        self.pointLabel.text = self.anotherPoint == nil ? String(self.Point) : String(self.Point) + "/" + String(self.anotherPoint!)
+        if self.anotherPoint == 21 {
+            self.pointLabel.text = "21"
+        }
+    }
 }

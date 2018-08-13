@@ -96,7 +96,7 @@ class SKButton: SKSpriteNode {
     }
     var holdTexture:SKTexture?
     var disabledTexture:SKTexture?
-    var disabledColorForLabel = UIColor.gray
+    var disabledColorForLabel = UIColor.init(red: 0.8078, green: 0.8078, blue: 0.8078, alpha: 1)
     var holdColorForLabel = UIColor.red
     var target : SKButtonDelegate?
     var isResponseMoved = true
