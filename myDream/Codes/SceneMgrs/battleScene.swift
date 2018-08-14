@@ -11,7 +11,7 @@ import SpriteKit
 enum gameLogicStatus {
     case watingForStake
     case watingForDecide
-    
+    case animating
 }
 
 class battleScene: SKScene,SKButtonDelegate {
@@ -23,8 +23,57 @@ class battleScene: SKScene,SKButtonDelegate {
             }
         }
         else if button == button01 {
+            guard button.isEnabled == true else {
+                return
+            }
             if self.logicStatus == .watingForStake {
+                guard let currentDollor = playerInfo?.value(forKey: "currentDollor") as? Int else {
+                    print("something wrong with get players current dollor")
+                    return
+                }
+                guard currentDollor > 0 else {
+                    print("you have no money baby")
+                    return
+                }
                 self.decideStake(stake: (house?.minStake)!)
+            }
+            else if self.logicStatus == .watingForDecide {
+                self.clickHint()
+            }
+        }
+        else if button == button02 {
+            guard button.isEnabled == true else {
+                return
+            }
+            if self.logicStatus == .watingForStake {
+                guard let currentDollor = playerInfo?.value(forKey: "currentDollor") as? Int else {
+                    print("something wrong with get players current dollor")
+                    return
+                }
+                guard currentDollor > 0 else {
+                    print("you have no money baby")
+                    return
+                }
+                if currentDollor >= (house?.maxStake)! {
+                    self.decideStake(stake: (house?.maxStake)!)
+                }
+                else {
+                    self.decideStake(stake: currentDollor)
+                }
+            }
+        }
+        else if button == button03 {
+            
+        }
+        else if button == button04 {
+            guard button.isEnabled == true else {
+                return
+            }
+            if self.logicStatus == .watingForStake {
+                self.decideStake(stake: self.preStake!) // if prebutton is enabled , self.preStake will not be nil
+            }
+            else if self.logicStatus == .watingForDecide {
+                
             }
         }
     }
@@ -83,6 +132,7 @@ class battleScene: SKScene,SKButtonDelegate {
               button03 != nil,
               betLabel != nil,
               button04 != nil else {
+                print("there is something wrong with setup battle scene ui elements")
                 return
               }
         naviBar!.backButton?.target = self
@@ -94,12 +144,15 @@ class battleScene: SKScene,SKButtonDelegate {
             oneButton?.target = self
             oneButton?.disabledTexture = SKTexture(imageNamed: "button_bg_disabled")
         }
-        button01?.buttonLabel.text = "Min"
-        button02?.buttonLabel.text = "Max"
-        button03?.buttonLabel.text = "Select"
-        button04?.buttonLabel.text = "PreTime"
-        if self.preStake == nil {
-            button04?.isEnabled = false
+        self.setUpButtons()
+        //here for develop use to avoid not enough dollor
+        guard let currentDollor = playerInfo?.value(forKey: "currentDollor") as? Int else {
+            print("something wrong with get players current dollor")
+            return
+        }
+        if currentDollor == 0 {
+            playerInfo?.setValue(1000, forKey: "currentDollor")
+            DataManager.shared.saveData()
         }
     }
     func decideStake(stake givenStake:Int) {
@@ -111,18 +164,13 @@ class battleScene: SKScene,SKButtonDelegate {
             print("not enough dollor")
             return
         }
-        //buttons of operation layer will move down
-//        if let operationLayer = self.childNode(withName: "//operateLayer") {
-//            let moveDown = SKAction.move(by: CGVector(dx: 0, dy: -200), duration: 0.3)
-//            moveDown.timingMode = .easeInEaseOut
-//            operationLayer.run(moveDown)
-//        }
-        for oneButton in [self.button01,self.button02,self.button03,self.button04] {
-            oneButton?.isEnabled = false
-        }
+
+        self.disabledAllButtons()
         //change player's dollor and animate player's dollor label
         let currentDollor = playerCurrentDollor - givenStake
         playerInfo?.setValue(currentDollor, forKey: "currentDollor")
+        DataManager.shared.saveData()
+        self.preStake = givenStake
         let action = SKAction.customAction(withDuration:0.3, actionBlock: {
             labelNode,time in
             if let node = labelNode as? SKLabelNode {
@@ -136,38 +184,40 @@ class battleScene: SKScene,SKButtonDelegate {
         action.timingMode = .easeInEaseOut
         naviBar?.dollorLabel?.run(action)
         //setup bet label
-        betLabel?.text = "bet :"+" $ " + String(givenStake)
+        betLabel?.alpha = 1
         betLabel?.isHidden = false
-        
-        self.distributeOneCard(to: player, isBack: false, completetion:{
-            self.distributeOneCard(to: self.player, isBack: false, completetion: {
-                
-                //add player's point label
-                self.player.setUpPointLabel()
-                if let contentLayer = self.childNode(withName: "//gameContent") {
-                    self.player.pointLabel.alpha = 0
-                    contentLayer.addChild(self.player.pointLabel)
-                }
-                let action = SKAction.fadeAlpha(to: 1, duration: 0.1)
-                let waitAction = SKAction.wait(forDuration: 0.5)
-                self.player.pointLabel.run(SKAction.sequence([action,waitAction]), completion: {
-                    self.distributeOneCard(to: self.functionary, isBack: false, completetion: {
-                        self.distributeOneCard(to: self.functionary, isBack: true, completetion: {
-                            if let operationLayer = self.childNode(withName: "//operateLayer") {
+        let betLabelAction = SKAction.customAction(withDuration: 0.3, actionBlock: {
+            betLabelNode,time in
+            if let node = betLabelNode as? SKLabelNode {
+                let range = givenStake
+                let temp = Float((time/0.3)) * Float(range)
+                let temp1 = Int(ceil(temp))
+                node.text = "bet :" + " $ " + String(temp1)
+            }
+        })
+        betLabel?.run(SKAction.sequence([betLabelAction,SKAction.wait(forDuration: 0.5)]), completion: {
+            self.distributeOneCard(to: self.player, isBack: false, completetion:{
+                self.distributeOneCard(to: self.player, isBack: false, completetion: {
+                    
+                    //add player's point label
+                    self.player.setUpPointLabel()
+                    if let contentLayer = self.childNode(withName: "//gameContent") {
+                        self.player.pointLabel.alpha = 0
+                        contentLayer.addChild(self.player.pointLabel)
+                    }
+                    let action = SKAction.fadeAlpha(to: 1, duration: 0.1)
+                    let waitAction = SKAction.wait(forDuration: 0.5)
+                    self.player.pointLabel.run(SKAction.sequence([action,waitAction]), completion: {
+                        self.distributeOneCard(to: self.functionary, isBack: false, completetion: {
+                            self.distributeOneCard(to: self.functionary, isBack: true, completetion: {
                                 self.logicStatus = .watingForDecide
-                                self.button01?.buttonLabel.text = "Stop"
-                                self.button02?.buttonLabel.text = "Double"
-                                self.button03?.buttonLabel.text = "Deliver"
-                                self.button04?.buttonLabel.text = "Hint"
-                                let moveUp = SKAction.move(by: CGVector(dx: 0, dy: 200), duration: 0.3)
-                                moveUp.timingMode = .easeInEaseOut
-                                operationLayer.run(moveUp)
-                            }
-                        }, waitTime: 0.5)
-                    }, waitTime: 0)
-                })
-            }, waitTime: 0.5)
-        }, waitTime: 0)
+                                self.setUpButtons()
+                            }, waitTime: 0.5)
+                        }, waitTime: 0)
+                    })
+                }, waitTime: 0.5)
+            }, waitTime: 0)
+        })
     }
     func distributeOneCard(to givenPlayer:PlayerOfBlackJack,isBack givenIsBack:Bool,completetion:@escaping () -> Void,waitTime givenWaitTime:TimeInterval) {
         //set up datas
@@ -200,31 +250,141 @@ class battleScene: SKScene,SKButtonDelegate {
         }
         
     }
-    func setUpOperateLayerButtons(currentStatus givenStatus:gameLogicStatus) {
-        if givenStatus == .watingForStake {
+
+    func setUpButtons() {
+        if self.logicStatus == .watingForStake {
             self.button01?.buttonLabel.text = "Min"
             self.button02?.buttonLabel.text = "Max"
             self.button03?.buttonLabel.text = "Select"
             self.button04?.buttonLabel.text = "PreTime"
             for oneButton in [self.button01,self.button02,self.button03,self.button04] {
-                oneButton?.isEnabled = true
-            }
-            if self.preStake == nil {
-                button04?.disabledColorForLabel = UIColor.white
-                button04?.isEnabled = false
+                if oneButton == self.button04 {
+                    if self.preStake == nil {
+                        oneButton?.isEnabled = false
+                    }
+                    else {
+                        oneButton?.isEnabled = true
+                    }
+                }
+                else {
+                 oneButton?.isEnabled = true
+                }
             }
         }
-        else if givenStatus == .watingForDecide {
-            self.button01?.buttonLabel.text = "Stop"
-            self.button02?.buttonLabel.text = "Double"
-            self.button03?.buttonLabel.text = "Deliver"
-            self.button04?.buttonLabel.text = "Hint"
+        else if self.logicStatus == .watingForDecide {
+            self.button01?.buttonLabel.text = "Hint"
+            self.button02?.buttonLabel.text = "Stop"
+            self.button03?.buttonLabel.text = "Double"
+            self.button04?.buttonLabel.text = "Deliver"
             for oneButton in [self.button01,self.button02,self.button03,self.button04] {
-                oneButton?.isEnabled = true
+                if oneButton == self.button04 {
+                    if self.player.cards.count == 2 && self.player.cards[0].value == self.player.cards[1].value {
+                        oneButton?.isEnabled = true
+                    }
+                    else {
+                        oneButton?.isEnabled = false
+                    }
+                }
+                else {
+                    oneButton?.isEnabled = true
+                }
             }
-            
         }
-        
     }
     
+    func disabledAllButtons() {
+        for oneButton in [self.button01,self.button02,self.button03,self.button04] {
+            oneButton?.isEnabled = false
+        }
+    }
+    func checkPlayerResult() {
+        let point = self.player.getPointAndAnotherPoint().thePoint
+        let anotherPoint = self.player.getPointAndAnotherPoint().theAnotherPoint
+        guard point <= 21 else {
+            self.showBustToPlayerPointLabel(compeletion: {
+                self.didWhilePlayerLose()
+            }, waitting: 0.3)
+            return
+        }
+        if point == 21 || anotherPoint == 21 {
+            return
+        }
+        self.setUpButtons()
+    }
+    func showBustToPlayerPointLabel(compeletion givenCompeletion:@escaping () -> Void, waitting givenWaitTime:TimeInterval) {
+        let labelBg = self.getOneLabelNamed(name: "Bust")
+        self.player.pointLabel.addChild(labelBg)
+        
+        //animations
+        let action = SKAction.scale(to: 1, duration: 0.3)
+        action.timingMode = .easeInEaseOut
+        let action1 = SKAction.scale(to: 0, duration: 0.3)
+        action1.timingMode = .easeInEaseOut
+        labelBg.run(SKAction.sequence([action,SKAction.wait(forDuration: 0.5),action1,SKAction.wait(forDuration: givenWaitTime),SKAction.run(givenCompeletion),SKAction.removeFromParent()]))
+        
+    }
+    func didWhilePlayerLose() {
+        let labelBg = self.getOneLabelNamed(name: "Lose")
+        self.player.pointLabel.addChild(labelBg)
+        
+        //animations
+        let action = SKAction.scale(to: 1, duration: 0.3)
+        action.timingMode = .easeInEaseOut
+        let action1 = SKAction.scale(to: 0, duration: 0.3)
+        action1.timingMode = .easeInEaseOut
+        labelBg.run(SKAction.sequence([action,SKAction.wait(forDuration: 0.5),action1,SKAction.removeFromParent()]), completion: {
+            //hide betLabel and remove pointLabel
+            self.betLabel?.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.hide()]), completion: {
+                self.betLabel?.text = "bet : $ 0"
+            })
+            self.player.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {
+                //remove all cards
+                var moveAction = SKAction.move(by: CGVector(dx: -414, dy: 0), duration: 0.3)
+                moveAction.timingMode = .easeInEaseOut
+                moveAction = SKAction.sequence([moveAction,SKAction.removeFromParent()])
+                for oneCard in self.player.cards {
+                    oneCard.run(moveAction)
+                }
+                for indexTemp in 1 ... self.functionary.cards.count - 1 {  //you know  , there is at least 2 elements in functionary's cards while player lose
+                    self.functionary.cards[indexTemp].run(moveAction)
+                }
+                self.functionary.cards[0].run(moveAction, completion: {
+                    //clear all cards and setup datas
+                    
+                    for onePlayer in [self.player,self.functionary] {
+                        onePlayer.cards.removeAll()
+                        onePlayer.Point = 0
+                        onePlayer.anotherPoint = nil
+                    }
+                    self.logicStatus = .watingForStake
+                    self.setUpButtons()
+                })
+            })
+        })
+    }
+    func  didWhilePlayerWin() {
+        
+    }
+    func clickHint() {
+        self.disabledAllButtons()
+        self.distributeOneCard(to: self.player, isBack: false, completetion: {
+            self.player.setUpPointLabel()
+            self.checkPlayerResult()
+        }, waitTime: 0.3)
+    }
+    
+    func getOneLabelNamed(name givenName:String) -> SKSpriteNode {
+        let labelBg = SKSpriteNode(imageNamed: "labelBg")
+        let labelNode = SKLabelNode(text: givenName)
+        labelNode.fontName = "PingFang SC Semibold"
+        labelNode.fontSize = 16
+        labelNode.fontColor = UIColor.black
+        labelNode.zPosition = 1
+        labelNode.verticalAlignmentMode = .center
+        labelBg.addChild(labelNode)
+        labelBg.zPosition = 1
+        labelBg.position = CGPoint(x: 63.862, y: 22.22)
+        labelBg.setScale(0)
+        return labelBg
+    }
 }
