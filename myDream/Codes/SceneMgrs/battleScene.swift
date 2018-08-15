@@ -372,7 +372,21 @@ class battleScene: SKScene,SKButtonDelegate {
             self.checkPlayerResult()
         }, waitTime: 0.3)
     }
-    
+    func clickStop() {
+        self.disabledAllButtons()
+        //functionary's turn
+        self.functionary.cards[1].cardNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.3),SKAction.setTexture(self.functionary.cards[1].originTexture!),SKAction.wait(forDuration: 0.3)]), completion: {
+            self.functionary.setUpPointLabel()
+            self.functionary.pointLabel.alpha = 0
+            if let contentLayer = self.childNode(withName: "//gameContent") {
+                contentLayer.addChild(self.functionary.pointLabel)
+            }
+            self.functionary.pointLabel.run(SKAction.fadeIn(withDuration: 0.3), completion: {
+                
+            })
+                
+        })
+    }
     func getOneLabelNamed(name givenName:String) -> SKSpriteNode {
         let labelBg = SKSpriteNode(imageNamed: "labelBg")
         let labelNode = SKLabelNode(text: givenName)
