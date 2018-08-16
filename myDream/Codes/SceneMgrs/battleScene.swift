@@ -61,6 +61,10 @@ class battleScene: SKScene,SKButtonDelegate {
                     self.decideStake(stake: currentDollor)
                 }
             }
+            else if self.logicStatus == .watingForDecide {
+                //stop
+                self.clickStop()
+            }
         }
         else if button == button03 {
             
@@ -297,21 +301,37 @@ class battleScene: SKScene,SKButtonDelegate {
             oneButton?.isEnabled = false
         }
     }
-    func checkPlayerResult() {
-        let point = self.player.getPointAndAnotherPoint().thePoint
-        let anotherPoint = self.player.getPointAndAnotherPoint().theAnotherPoint
+    func checkResult( givenPlayer:PlayerOfBlackJack) {
+        let point = givenPlayer.getPointAndAnotherPoint().thePoint
+        let anotherPoint = givenPlayer.getPointAndAnotherPoint().theAnotherPoint
         guard point <= 21 else {
-            self.showBustToPlayerPointLabel(compeletion: {
-                self.didWhilePlayerLose()
+            self.showBustToPointLabel(givenPlayer: givenPlayer, compeletion: {
+                if givenPlayer.isFunctionary == false {
+                    self.didWhilePlayerLose()
+                }
+                else {
+                    self.didWhilePlayerWin()
+                }
             }, waitting: 0.3)
             return
         }
         if point == 21 || anotherPoint == 21 {
+            if givenPlayer.isFunctionary == true {
+                self.didWhilePlayerLose()
+            }
+            else {
+                self.clickStop()
+            }
             return
         }
-        self.setUpButtons()
+        if givenPlayer.isFunctionary == false {
+            self.setUpButtons()
+        }
+        else {
+            
+        }
     }
-    func showBustToPlayerPointLabel(compeletion givenCompeletion:@escaping () -> Void, waitting givenWaitTime:TimeInterval) {
+    func showBustToPointLabel(givenPlayer:PlayerOfBlackJack,compeletion givenCompeletion:@escaping () -> Void, waitting givenWaitTime:TimeInterval) {
         let labelBg = self.getOneLabelNamed(name: "Bust")
         self.player.pointLabel.addChild(labelBg)
         
@@ -369,7 +389,7 @@ class battleScene: SKScene,SKButtonDelegate {
         self.disabledAllButtons()
         self.distributeOneCard(to: self.player, isBack: false, completetion: {
             self.player.setUpPointLabel()
-            self.checkPlayerResult()
+            self.checkResult(givenPlayer: self.player)
         }, waitTime: 0.3)
     }
     func clickStop() {
@@ -400,5 +420,8 @@ class battleScene: SKScene,SKButtonDelegate {
         labelBg.position = CGPoint(x: 63.862, y: 22.22)
         labelBg.setScale(0)
         return labelBg
+    }
+    func functionaryBehavior() {
+        
     }
 }
