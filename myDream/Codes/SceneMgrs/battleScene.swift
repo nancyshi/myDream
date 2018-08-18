@@ -477,10 +477,11 @@ class battleScene: SKScene,SKButtonDelegate {
             if let contentLayer = self.childNode(withName: "//gameContent") {
                 contentLayer.addChild(self.functionary.pointLabel)
             }
-            self.functionary.pointLabel.run(SKAction.fadeIn(withDuration: 0.3), completion: {
+            self.functionary.pointLabel.run(SKAction.sequence([SKAction.fadeIn(withDuration: 0.3),SKAction.wait(forDuration: 0.3)]), completion: {
                 self.functionaryBehavior()
             })
-                
+
+            
         })
     }
     func getOneLabelNamed(name givenName:String) -> SKSpriteNode {
