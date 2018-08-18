@@ -13,6 +13,11 @@ enum gameLogicStatus {
     case watingForDecide
     case animating
 }
+enum gameResult{
+    case playerWin
+    case functionaryWin
+    case normal
+}
 
 class battleScene: SKScene,SKButtonDelegate {
     func onClick(button: SKButton) {
@@ -114,6 +119,7 @@ class battleScene: SKScene,SKButtonDelegate {
     var player = PlayerOfBlackJack.init(isFunctionary: false)
     var functionary = PlayerOfBlackJack.init(isFunctionary: true)
     let insertCardAnimTime : TimeInterval = 0.3
+    var currentBet:Int? = nil
     
     override func didMove(to view: SKView) {
 
@@ -168,7 +174,7 @@ class battleScene: SKScene,SKButtonDelegate {
             print("not enough dollor")
             return
         }
-
+        self.currentBet = givenStake
         self.disabledAllButtons()
         //change player's dollor and animate player's dollor label
         let currentDollor = playerCurrentDollor - givenStake
@@ -216,6 +222,7 @@ class battleScene: SKScene,SKButtonDelegate {
                             self.distributeOneCard(to: self.functionary, isBack: true, completetion: {
                                 self.logicStatus = .watingForDecide
                                 self.setUpButtons()
+                                let _ = self.checkTheResult(givenPlayer: self.player)
                             }, waitTime: 0.5)
                         }, waitTime: 0)
                     })
@@ -225,6 +232,10 @@ class battleScene: SKScene,SKButtonDelegate {
     }
     func distributeOneCard(to givenPlayer:PlayerOfBlackJack,isBack givenIsBack:Bool,completetion:@escaping () -> Void,waitTime givenWaitTime:TimeInterval) {
         //set up datas
+        if cards.count == 0 {
+            cards = cards + usedCards
+            usedCards.removeAll()
+        }
         let randomNum = Int(arc4random()) % cards.count
         let selectedCard = cards[randomNum]
         cards.remove(at: randomNum)
@@ -301,39 +312,43 @@ class battleScene: SKScene,SKButtonDelegate {
             oneButton?.isEnabled = false
         }
     }
-    func checkResult( givenPlayer:PlayerOfBlackJack) {
-        let point = givenPlayer.getPointAndAnotherPoint().thePoint
-        let anotherPoint = givenPlayer.getPointAndAnotherPoint().theAnotherPoint
+    func checkTheResult(givenPlayer:PlayerOfBlackJack) -> gameResult {
+        let point = givenPlayer.getFinalPoint()
         guard point <= 21 else {
-            self.showBustToPointLabel(givenPlayer: givenPlayer, compeletion: {
-                if givenPlayer.isFunctionary == false {
-                    self.didWhilePlayerLose()
-                }
-                else {
+            if givenPlayer.isFunctionary == true {
+                self.showBustToPointLabel(givenPlayer: givenPlayer, compeletion: {
                     self.didWhilePlayerWin()
-                }
-            }, waitting: 0.3)
-            return
+                }, waitting: 0.3)
+                return gameResult.playerWin
+            }
+            else {
+                self.showBustToPointLabel(givenPlayer: givenPlayer, compeletion: {
+                    self.didWhilePlayerLose()
+                }, waitting: 0.3)
+                return gameResult.functionaryWin
+            }
         }
-        if point == 21 || anotherPoint == 21 {
+        if point == 21 {
             if givenPlayer.isFunctionary == true {
                 self.didWhilePlayerLose()
+                return gameResult.functionaryWin
             }
             else {
                 self.clickStop()
+                return gameResult.normal
             }
-            return
-        }
-        if givenPlayer.isFunctionary == false {
-            self.setUpButtons()
         }
         else {
-            
+            if givenPlayer.isFunctionary == false {
+                self.setUpButtons()
+            }
+            return gameResult.normal
         }
+        
     }
     func showBustToPointLabel(givenPlayer:PlayerOfBlackJack,compeletion givenCompeletion:@escaping () -> Void, waitting givenWaitTime:TimeInterval) {
         let labelBg = self.getOneLabelNamed(name: "Bust")
-        self.player.pointLabel.addChild(labelBg)
+        givenPlayer.pointLabel.addChild(labelBg)
         
         //animations
         let action = SKAction.scale(to: 1, duration: 0.3)
@@ -357,6 +372,7 @@ class battleScene: SKScene,SKButtonDelegate {
             self.betLabel?.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.hide()]), completion: {
                 self.betLabel?.text = "bet : $ 0"
             })
+            self.functionary.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {})
             self.player.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {
                 //remove all cards
                 var moveAction = SKAction.move(by: CGVector(dx: -414, dy: 0), duration: 0.3)
@@ -376,6 +392,7 @@ class battleScene: SKScene,SKButtonDelegate {
                         onePlayer.Point = 0
                         onePlayer.anotherPoint = nil
                     }
+                    self.currentBet = nil
                     self.logicStatus = .watingForStake
                     self.setUpButtons()
                 })
@@ -383,17 +400,76 @@ class battleScene: SKScene,SKButtonDelegate {
         })
     }
     func  didWhilePlayerWin() {
+        let labelBg = self.getOneLabelNamed(name: "Win")
+        self.player.pointLabel.addChild(labelBg)
         
+        //animations
+        let action = SKAction.scale(to: 1, duration: 0.3)
+        action.timingMode = .easeInEaseOut
+        let action1 = SKAction.scale(to: 0, duration: 0.3)
+        action1.timingMode = .easeInEaseOut
+        labelBg.run(SKAction.sequence([action,SKAction.wait(forDuration: 0.5),action1,SKAction.removeFromParent()]), completion: {
+            //win the bet
+            let actionRoll = SKAction.customAction(withDuration: 0.5, actionBlock: {
+                oneNode,time in
+                if let node = oneNode as? SKLabelNode {
+                    let dollor = self.playerInfo?.value(forKey: "currentDollor") as! Int
+                    let range = 2 * self.currentBet!
+                    let current = (time/0.5) * CGFloat(range)
+                    var current1 = Int(ceil(current))
+                    current1 = current1 + dollor
+                    node.text = String(current1)
+                }
+            })
+            actionRoll.timingMode = .easeInEaseOut
+            self.naviBar?.dollorLabel?.run(SKAction.sequence([actionRoll,SKAction.wait(forDuration: 0.3)]), completion: {
+                //update datas
+                let currentDollor = self.playerInfo?.value(forKey: "currentDollor") as! Int
+                let willDollor = currentDollor + 2 * self.currentBet!
+                self.playerInfo?.setValue(willDollor, forKey: "currentDollor")
+                DataManager.shared.saveData()
+                //hide betLabel and remove pointLabel
+                self.betLabel?.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.hide()]), completion: {
+                    self.betLabel?.text = "bet : $ 0"
+                })
+                self.functionary.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {})
+                self.player.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {
+                    //remove all cards
+                    var moveAction = SKAction.move(by: CGVector(dx: -414, dy: 0), duration: 0.3)
+                    moveAction.timingMode = .easeInEaseOut
+                    moveAction = SKAction.sequence([moveAction,SKAction.removeFromParent()])
+                    for oneCard in self.player.cards {
+                        oneCard.run(moveAction)
+                    }
+                    for indexTemp in 1 ... self.functionary.cards.count - 1 {  //you know  , there is at least 2 elements in functionary's cards while player lose
+                        self.functionary.cards[indexTemp].run(moveAction)
+                    }
+                    self.functionary.cards[0].run(moveAction, completion: {
+                        //clear all cards and setup datas
+                        
+                        for onePlayer in [self.player,self.functionary] {
+                            onePlayer.cards.removeAll()
+                            onePlayer.Point = 0
+                            onePlayer.anotherPoint = nil
+                        }
+                        self.currentBet = nil
+                        self.logicStatus = .watingForStake
+                        self.setUpButtons()
+                    })
+                })
+            })
+        })
     }
     func clickHint() {
         self.disabledAllButtons()
         self.distributeOneCard(to: self.player, isBack: false, completetion: {
             self.player.setUpPointLabel()
-            self.checkResult(givenPlayer: self.player)
+            let _ = self.checkTheResult(givenPlayer: self.player)
         }, waitTime: 0.3)
     }
     func clickStop() {
         self.disabledAllButtons()
+        self.player.pointLabel.text = String(self.player.getFinalPoint())
         //functionary's turn
         self.functionary.cards[1].cardNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.3),SKAction.setTexture(self.functionary.cards[1].originTexture!),SKAction.wait(forDuration: 0.3)]), completion: {
             self.functionary.setUpPointLabel()
@@ -402,7 +478,7 @@ class battleScene: SKScene,SKButtonDelegate {
                 contentLayer.addChild(self.functionary.pointLabel)
             }
             self.functionary.pointLabel.run(SKAction.fadeIn(withDuration: 0.3), completion: {
-                
+                self.functionaryBehavior()
             })
                 
         })
@@ -422,6 +498,25 @@ class battleScene: SKScene,SKButtonDelegate {
         return labelBg
     }
     func functionaryBehavior() {
-        
+        let playerFinalPoint = self.player.getFinalPoint()
+        let functionaryFinalPoint = self.functionary.getFinalPoint()
+        let result = self.checkTheResult(givenPlayer: self.functionary)
+        if result == gameResult.normal {
+            if functionaryFinalPoint < playerFinalPoint {
+                self.button01!.run(SKAction.wait(forDuration: 0.3), completion: {
+                    self.distributeOneCard(to: self.functionary, isBack: false, completetion: {
+                        self.functionary.setUpPointLabel()
+                        self.functionaryBehavior()
+                    }, waitTime: 0.3)
+                })
+            }
+            else {
+                self.button01!.run(SKAction.wait(forDuration: 0.3), completion: {
+                    self.didWhilePlayerLose()
+                })
+                
+            }
+        }
+
     }
 }

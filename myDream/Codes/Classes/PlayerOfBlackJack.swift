@@ -80,4 +80,16 @@ class PlayerOfBlackJack: SKNode {
             self.pointLabel.text = "21"
         }
     }
+    func getFinalPoint() -> Int {
+        self.updatePointValues()
+        guard self.anotherPoint != nil else {
+            return self.Point
+        }
+        if self.anotherPoint == 21 {
+            return 21
+        }
+        else {
+            return self.anotherPoint!
+        }
+    }
 }
