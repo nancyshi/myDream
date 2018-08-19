@@ -21,6 +21,7 @@ class PlayerOfBlackJack: SKNode {
         pointLabel.fontName = "PingFang SC Semibold"
         pointLabel.fontSize = 20
         pointLabel.fontColor = UIColor.white
+        pointLabel.zPosition = 10
         super.init()
     }
     

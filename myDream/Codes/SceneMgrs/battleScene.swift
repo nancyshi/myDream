@@ -392,6 +392,8 @@ class battleScene: SKScene,SKButtonDelegate {
                         onePlayer.Point = 0
                         onePlayer.anotherPoint = nil
                     }
+                    self.usedCards = self.usedCards + self.presentedCards
+                    self.presentedCards.removeAll()
                     self.currentBet = nil
                     self.logicStatus = .watingForStake
                     self.setUpButtons()
@@ -452,6 +454,8 @@ class battleScene: SKScene,SKButtonDelegate {
                             onePlayer.Point = 0
                             onePlayer.anotherPoint = nil
                         }
+                        self.usedCards = self.usedCards + self.presentedCards
+                        self.presentedCards.removeAll()
                         self.currentBet = nil
                         self.logicStatus = .watingForStake
                         self.setUpButtons()
@@ -473,15 +477,15 @@ class battleScene: SKScene,SKButtonDelegate {
         //functionary's turn
         self.functionary.cards[1].cardNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.3),SKAction.setTexture(self.functionary.cards[1].originTexture!),SKAction.wait(forDuration: 0.3)]), completion: {
             self.functionary.setUpPointLabel()
-            self.functionary.pointLabel.alpha = 0
             if let contentLayer = self.childNode(withName: "//gameContent") {
+                self.functionary.pointLabel.alpha = 0
                 contentLayer.addChild(self.functionary.pointLabel)
             }
-            self.functionary.pointLabel.run(SKAction.sequence([SKAction.fadeIn(withDuration: 0.3),SKAction.wait(forDuration: 0.3)]), completion: {
+            let actionA = SKAction.fadeAlpha(to: 1, duration: 0.3)
+            let actionB = SKAction.wait(forDuration: 0.3)
+            self.functionary.pointLabel.run(SKAction.sequence([actionA,actionB]), completion: {
                 self.functionaryBehavior()
             })
-
-            
         })
     }
     func getOneLabelNamed(name givenName:String) -> SKSpriteNode {
@@ -493,7 +497,7 @@ class battleScene: SKScene,SKButtonDelegate {
         labelNode.zPosition = 1
         labelNode.verticalAlignmentMode = .center
         labelBg.addChild(labelNode)
-        labelBg.zPosition = 1
+        labelBg.zPosition = 10
         labelBg.position = CGPoint(x: 63.862, y: 22.22)
         labelBg.setScale(0)
         return labelBg
