@@ -35,7 +35,8 @@ class fightSelectScene: SKScene,SKButtonDelegate {
         }
         else if button is HouseItem {
             guard (button as! HouseItem).isEnabled == true else {
-                print("the button is disabled , there should be a notification")
+                let noti = Notification.init(text: "just not been opened , you have to purchase all the front houses to open this house", type: .needConform)
+                Notification.showNotification(notification: noti, to: self, animationed: true)
                 return
             }
             if let scene = SKScene(fileNamed: "battleScene") as? battleScene {

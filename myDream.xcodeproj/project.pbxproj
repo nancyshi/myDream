@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		339CE1A721140A23003C3FE5 /* functionaryConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 339CE1A521140A23003C3FE5 /* functionaryConfig.json */; };
 		339CE1A821140A23003C3FE5 /* houseConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 339CE1A621140A23003C3FE5 /* houseConfig.json */; };
+		68278FB82129B92500ABC58D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68278FB72129B92500ABC58D /* Notification.swift */; };
+		68278FBB2129C14600ABC58D /* ok_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68278FB92129C14500ABC58D /* ok_button@3x.png */; };
+		68278FBC2129C14600ABC58D /* ok_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68278FBA2129C14500ABC58D /* ok_button@2x.png */; };
 		685EB7442121F34D00A5A4ED /* button_bg_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685EB7432121F34D00A5A4ED /* button_bg_disabled@2x.png */; };
 		686A655121157B800030C298 /* NaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A655021157B800030C298 /* NaviBar.swift */; };
 		686A655321157C230030C298 /* naviBar.sks in Resources */ = {isa = PBXBuildFile; fileRef = 686A655221157C230030C298 /* naviBar.sks */; };
@@ -121,6 +124,9 @@
 /* Begin PBXFileReference section */
 		339CE1A521140A23003C3FE5 /* functionaryConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = functionaryConfig.json; sourceTree = "<group>"; };
 		339CE1A621140A23003C3FE5 /* houseConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = houseConfig.json; sourceTree = "<group>"; };
+		68278FB72129B92500ABC58D /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		68278FB92129C14500ABC58D /* ok_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok_button@3x.png"; sourceTree = "<group>"; };
+		68278FBA2129C14500ABC58D /* ok_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok_button@2x.png"; sourceTree = "<group>"; };
 		685EB7432121F34D00A5A4ED /* button_bg_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_bg_disabled@2x.png"; sourceTree = "<group>"; };
 		686A655021157B800030C298 /* NaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviBar.swift; sourceTree = "<group>"; };
 		686A655221157C230030C298 /* naviBar.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = naviBar.sks; sourceTree = "<group>"; };
@@ -410,6 +416,8 @@
 		6878BBA0210384DC00AB8E28 /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				68278FBA2129C14500ABC58D /* ok_button@2x.png */,
+				68278FB92129C14500ABC58D /* ok_button@3x.png */,
 				68739B112123297F00B18F8E /* battle11@2x.png */,
 				68739B0B2123281700B18F8E /* labelBg@2x.png */,
 				68739B0C2123281700B18F8E /* labelBg@3x.png */,
@@ -465,6 +473,7 @@
 				686A655021157B800030C298 /* NaviBar.swift */,
 				686A65542116154C0030C298 /* Card.swift */,
 				68E478AB211B24FF003440E9 /* PlayerOfBlackJack.swift */,
+				68278FB72129B92500ABC58D /* Notification.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -590,6 +599,7 @@
 				6878BBB2210384F700AB8E28 /* mainScene.sks in Resources */,
 				339CE1A721140A23003C3FE5 /* functionaryConfig.json in Resources */,
 				686A65AE211617E70030C298 /* h_2.png in Resources */,
+				68278FBC2129C14600ABC58D /* ok_button@2x.png in Resources */,
 				68D11CC8211472430015A5D0 /* houseItem_bg_disabled@2x.png in Resources */,
 				339CE1A821140A23003C3FE5 /* houseConfig.json in Resources */,
 				68DA4FA12103A43F0000ED93 /* defaultImage@2x.png in Resources */,
@@ -604,6 +614,7 @@
 				686A6595211617E70030C298 /* c_3.png in Resources */,
 				686A65B5211617E70030C298 /* h_9.png in Resources */,
 				686A65A0211617E70030C298 /* d_10.png in Resources */,
+				68278FBB2129C14600ABC58D /* ok_button@3x.png in Resources */,
 				686A65AD211617E70030C298 /* h_10.png in Resources */,
 				686A6599211617E70030C298 /* c_7.png in Resources */,
 				685EB7442121F34D00A5A4ED /* button_bg_disabled@2x.png in Resources */,
@@ -672,6 +683,7 @@
 				6878BBB82103854900AB8E28 /* SKButton.swift in Sources */,
 				68E90B60210CCF5900F848CF /* DataType.swift in Sources */,
 				68E478AC211B24FF003440E9 /* PlayerOfBlackJack.swift in Sources */,
+				68278FB82129B92500ABC58D /* Notification.swift in Sources */,
 				68DA4FA42103A5CA0000ED93 /* HouseItem.swift in Sources */,
 				68E90B62210CD45200F848CF /* DataManager.swift in Sources */,
 				689D451921076A2900C78489 /* SKScrollNode.swift in Sources */,
