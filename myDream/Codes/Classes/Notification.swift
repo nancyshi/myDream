@@ -30,6 +30,7 @@ class Notification: SKNode,SKButtonDelegate {
     var notiLabel : SKLabelNode = SKLabelNode(text: "default")
     var okButton : SKButton = SKButton.init(type: .Normal)
     var bg : SKSpriteNode = SKSpriteNode(texture: nil, color: UIColor.black, size: CGSize(width: 420, height: 740))
+    var showNode : SKNode = SKNode()
     var type : NotificationType = .needConform
     var waittingTime:TimeInterval = 2 //just use for fadeover type
     
@@ -37,19 +38,21 @@ class Notification: SKNode,SKButtonDelegate {
         super.init()
         bg.alpha = 0.5
         bg.zPosition = 1
-        textBg.zPosition = 2
-        notiLabel.zPosition = 3
-        okButton.zPosition = 4
+        showNode.zPosition = 2
+        textBg.zPosition = 1
+        notiLabel.zPosition = 2
+        okButton.zPosition = 3
         
+        showNode.addChild(textBg)
+        self.addChild(showNode)
         self.addChild(bg)
-        self.addChild(textBg)
         
         notiLabel.numberOfLines = 0
         notiLabel.fontName = "PingFang SC Semibold"
         notiLabel.fontSize = 20
         notiLabel.verticalAlignmentMode = .center
         notiLabel.preferredMaxLayoutWidth = 400
-        self.addChild(notiLabel)
+        self.showNode.addChild(notiLabel)
         
         okButton.buttonLabel.fontSize = 20
         okButton.buttonLabel.fontName = "PingFang SC Semibold"
@@ -59,7 +62,7 @@ class Notification: SKNode,SKButtonDelegate {
         okButton.buttonLabel.text = "OK"
         okButton.buttonLabel.verticalAlignmentMode = .center
         okButton.target = self
-        self.addChild(okButton)
+        self.showNode.addChild(okButton)
     }
     
     convenience init(text givenText:String, type givenType:NotificationType) {
@@ -86,7 +89,7 @@ class Notification: SKNode,SKButtonDelegate {
     class func showNotification(notification givenNotification:Notification,to givenNode:SKNode,animationed givenAnimationed:Bool) {
         givenNotification.zPosition = 1000
         if givenAnimationed == true {
-            givenNotification.setScale(0)
+            givenNotification.showNode.setScale(0)
             givenNode.addChild(givenNotification)
             let actionA = SKAction.scale(to: 1, duration: 0.3)
             actionA.timingMode = .easeInEaseOut
@@ -94,7 +97,7 @@ class Notification: SKNode,SKButtonDelegate {
             actionB.timingMode = .easeInEaseOut
             
             let actionSeq = givenNotification.type == .needConform ? actionA : SKAction.sequence([actionA,SKAction.wait(forDuration: givenNotification.waittingTime),actionB,SKAction.removeFromParent()])
-            givenNotification.run(actionSeq)
+            givenNotification.showNode.run(actionSeq)
         }
         else {
             givenNode.addChild(givenNotification)

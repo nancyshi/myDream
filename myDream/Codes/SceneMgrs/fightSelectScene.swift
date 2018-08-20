@@ -46,6 +46,14 @@ class fightSelectScene: SKScene,SKButtonDelegate {
                 self.view?.presentScene(scene)
             }
         }
+        else if button.name == "purchaseButton" {
+            guard button.isEnabled == true else {
+                let noti = Notification.init(text: "this house can not been purchased yet , complete the house manager's task (you can interact with her to get a task , or sometimes she will give you a task randomly when you finish a game) to get the right to purchase", type: NotificationType.needConform)
+                Notification.showNotification(notification: noti, to: self, animationed: true)
+                return
+            }
+            
+        }
     }
     func setUpDatas() {
 
@@ -114,6 +122,7 @@ class fightSelectScene: SKScene,SKButtonDelegate {
             }
             
             oneHouseItem.target = self
+            oneHouseItem.purchaseButton.target = self
             houseItems.append(oneHouseItem)
         }
         let gapOfHouseItems:CGFloat = 13

@@ -19,6 +19,7 @@ class HouseItem: SKButton {
     var headIconNode = SKSpriteNode()
     var minLabel = SKLabelNode(text: "$ 20")
     var maxLabel = SKLabelNode(text: "$ 200K")
+    var purchaseButton : SKButton = SKButton()
     var itemStatus: HouseItemStatus = .disabled {
         didSet(old) {
             if itemStatus != old {
@@ -27,6 +28,13 @@ class HouseItem: SKButton {
                 }
                 else {
                     self.isEnabled = true
+                    if itemStatus == .canPurchased {
+                        self.purchaseButton.isEnabled = true
+                    }
+                    else if itemStatus == .purchased {
+                        self.purchaseButton.isEnabled = true
+                        self.purchaseButton.buttonLabel.text = "Get Dollor"
+                    }
                 }
             }
         }
@@ -48,8 +56,14 @@ class HouseItem: SKButton {
             maxLabel = self.childNode(withName: "//maxLabel") as! SKLabelNode
             headIconNode = self.childNode(withName: "//headIcon") as! SKSpriteNode
             houseNameLabel = self.childNode(withName: "//houseNameLabel") as! SKLabelNode
+            purchaseButton = self.childNode(withName: "//purchaseButton") as! SKButton
+            purchaseButton.name = "purchaseButton"
             
             disabledTexture = SKTexture(imageNamed: "houseItem_bg_disabled")
+            purchaseButton.disabledTexture = SKTexture(imageNamed: "button_Purchase_disabled")
+            purchaseButton.disabledColorForLabel = UIColor.white
+            purchaseButton.isEnabled = false
+            
         }
     }
     required init?(coder aDecoder: NSCoder) {
