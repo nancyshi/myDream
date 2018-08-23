@@ -180,6 +180,8 @@ class battleScene: SKScene,SKButtonDelegate {
         let currentDollor = playerCurrentDollor - givenStake
         playerInfo?.setValue(currentDollor, forKey: "currentDollor")
         DataManager.shared.saveData()
+        let dataForReport = DataForReport(type: .changeDollor, para: -givenStake)
+        DataManager.shared.currentReportedData = dataForReport
         self.preStake = givenStake
         let action = SKAction.customAction(withDuration:0.3, actionBlock: {
             labelNode,time in
@@ -359,6 +361,9 @@ class battleScene: SKScene,SKButtonDelegate {
         
     }
     func didWhilePlayerLose() {
+        //report
+        let reportMessage = DataForReport(type: .loseGame, para: nil)
+        DataManager.shared.currentReportedData = reportMessage
         let labelBg = self.getOneLabelNamed(name: "Lose")
         self.player.pointLabel.addChild(labelBg)
         
@@ -402,6 +407,9 @@ class battleScene: SKScene,SKButtonDelegate {
         })
     }
     func  didWhilePlayerWin() {
+        //report
+        let reportMessage = DataForReport(type: .winGame, para: nil)
+        DataManager.shared.currentReportedData = reportMessage
         let labelBg = self.getOneLabelNamed(name: "Win")
         self.player.pointLabel.addChild(labelBg)
         
@@ -429,6 +437,8 @@ class battleScene: SKScene,SKButtonDelegate {
                 let currentDollor = self.playerInfo?.value(forKey: "currentDollor") as! Int
                 let willDollor = currentDollor + 2 * self.currentBet!
                 self.playerInfo?.setValue(willDollor, forKey: "currentDollor")
+                let reportM = DataForReport(type: .changeDollor, para: 2 * self.currentBet!)
+                DataManager.shared.currentReportedData = reportM
                 DataManager.shared.saveData()
                 //hide betLabel and remove pointLabel
                 self.betLabel?.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.hide()]), completion: {

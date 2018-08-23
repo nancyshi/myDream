@@ -8,6 +8,23 @@
 
 import Foundation
 import CoreData
+enum DataForReportType {
+    case winGame
+    case loseGame
+    case changeDollor
+    case changeReputation
+}
+enum ReasonForChangeDollor {
+    case winGame
+    case decideStake
+    case getTaskReward
+    case purchaseHouse
+}
+enum ReasonForChangeReputation {
+    case winGame
+    case loseGame
+    case getTaskReward
+}
 class DataManager {
     static let shared = DataManager()
     var persistentContainer: NSPersistentContainer = {
@@ -21,6 +38,14 @@ class DataManager {
     }()
     var houseConfig: [House]?
     var functionaryConfig: [Functionary]?
+    var currentReportedData : DataForReport? {
+        didSet(old) {
+            guard currentReportedData != nil else {
+                return
+            }
+            //print("current msg ,type : \(currentReportedData!.type),and para : \(String(describing: currentReportedData!.para))")
+        }
+    }
     init() {
         houseConfig = self.loadJsonData(fileName: "houseConfig", givenType: [House].self)
         functionaryConfig = self.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self)
@@ -78,6 +103,11 @@ class DataManager {
         }
         return nil
     }
+}
+
+struct DataForReport {
+    var type : DataForReportType
+    var para : Any?
 }
 
 

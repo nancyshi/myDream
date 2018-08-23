@@ -21,6 +21,7 @@ class Task {
 }
 class TaskCondition {
     //it's just an abstract class for different subclasses with compeletly different vars
+    
     class func winGame(time givenTime: Int, isRequiredContinue givenIsRequiredContinue:Bool) -> TaskCondition{
         let result = TaskConditionWinGame.init()
         result.winTime = givenTime
