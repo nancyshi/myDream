@@ -43,9 +43,14 @@ class DataManager {
             guard currentReportedData != nil else {
                 return
             }
-            //print("current msg ,type : \(currentReportedData!.type),and para : \(String(describing: currentReportedData!.para))")
+            if observers.count != 0 {
+                for oneObserver in observers {
+                    oneObserver.didReciveReport(report: currentReportedData!)
+                }
+            }
         }
     }
+    var observers: [TaskObserver] = [TaskObserver]()
     init() {
         houseConfig = self.loadJsonData(fileName: "houseConfig", givenType: [House].self)
         functionaryConfig = self.loadJsonData(fileName: "functionaryConfig", givenType: [Functionary].self)

@@ -93,6 +93,7 @@ class battleScene: SKScene,SKButtonDelegate {
     var functionaryNameLabel : SKLabelNode?
     var headIconNode : SKSpriteNode?
     var interactButton: SKButton?
+    var taskLabel : SKLabelNode?
     //operate layer
     var button01: SKButton?
     var button02: SKButton?
@@ -128,6 +129,7 @@ class battleScene: SKScene,SKButtonDelegate {
         functionaryNameLabel = self.childNode(withName: "//nameLabel") as? SKLabelNode
         headIconNode = self.childNode(withName: "//headIconNode") as? SKSpriteNode
         interactButton = self.childNode(withName: "//interactButton") as? SKButton
+        taskLabel = self.childNode(withName: "//taskLabel") as? SKLabelNode
         button01 = self.childNode(withName: "//button01") as? SKButton
         button02 = self.childNode(withName: "//button02") as? SKButton
         button03 = self.childNode(withName: "//button03") as? SKButton
@@ -137,6 +139,7 @@ class battleScene: SKScene,SKButtonDelegate {
               functionaryNameLabel != nil,
               headIconNode != nil,
               interactButton != nil,
+              taskLabel != nil,
               button01 != nil,
               button02 != nil,
               button03 != nil,
@@ -164,6 +167,12 @@ class battleScene: SKScene,SKButtonDelegate {
             playerInfo?.setValue(1000, forKey: "currentDollor")
             DataManager.shared.saveData()
         }
+        //just for a test task
+        let task = Task.winGameType(name: "hellow", desc: "win the game for 3 times", isNeedProgressReport: true, winTime: 3, isNeedContinued: false)
+        self.taskLabel?.text = task.description + task.strForProgressReport!
+        self.interactButton?.isHidden = true
+        DataManager.shared.observers.append(task.observer)
+        
     }
     func decideStake(stake givenStake:Int) {
         guard let playerCurrentDollor = playerInfo?.value(forKey: "currentDollor") as? Int else {
