@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 enum TaskState {
     case defaultState
     case accept
@@ -16,7 +17,14 @@ enum TaskState {
 class Task {
     var name : String? = nil
     var description : String = "default"
-    var strForProgressReport : String?
+    var strForProgressReport : String? {
+        didSet(old) {
+            guard self.labelForShow != nil else {
+                return
+            }
+            self.labelForShow!.text = self.description + self.strForProgressReport!
+        }
+    }
     var state : TaskState = .defaultState {
         didSet(old) {
             if state == .complete {
@@ -34,6 +42,7 @@ class Task {
             observer.condition = self.condition
         }
     }
+    var labelForShow : SKLabelNode?
     func updateStrForProgressReport() {
         //for subclasses to override
     }
@@ -103,6 +112,7 @@ class TaskObserverWinGame : TaskObserver {
         if givenReport.type == .winGame {
             currentWinNum = currentWinNum + 1
             checkResult()
+            self.condition.task?.updateStrForProgressReport()
         }
         else if givenReport.type == .loseGame {
             if (self.condition as! TaskConditionWinGame).isRequiredContinue == true {

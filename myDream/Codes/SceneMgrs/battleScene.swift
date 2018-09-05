@@ -101,6 +101,7 @@ class battleScene: SKScene,SKButtonDelegate {
     var button04: SKButton?
     
     //game content layer
+    var contentLayer : SKNode?
     var betLabel: SKLabelNode?
     var playerPointLabel: SKLabelNode?
     var gapOfCards : Float = 34
@@ -118,7 +119,11 @@ class battleScene: SKScene,SKButtonDelegate {
     var presentedCards:[Card] = [Card]()
     var usedCards:[Card] = [Card]()
     var player = PlayerOfBlackJack.init(isFunctionary: false)
-    var functionary = PlayerOfBlackJack.init(isFunctionary: true)
+    var functionary = PlayerOfBlackJack.init(isFunctionary: true){
+        didSet(old) {
+            print("fuck bitch")
+        }
+    }
     let insertCardAnimTime : TimeInterval = 0.3
     var currentBet:Int? = nil
     
@@ -130,6 +135,7 @@ class battleScene: SKScene,SKButtonDelegate {
         headIconNode = self.childNode(withName: "//headIconNode") as? SKSpriteNode
         interactButton = self.childNode(withName: "//interactButton") as? SKButton
         taskLabel = self.childNode(withName: "//taskLabel") as? SKLabelNode
+        contentLayer = self.childNode(withName: "//gameContent")
         button01 = self.childNode(withName: "//button01") as? SKButton
         button02 = self.childNode(withName: "//button02") as? SKButton
         button03 = self.childNode(withName: "//button03") as? SKButton
@@ -140,6 +146,7 @@ class battleScene: SKScene,SKButtonDelegate {
               headIconNode != nil,
               interactButton != nil,
               taskLabel != nil,
+              contentLayer != nil,
               button01 != nil,
               button02 != nil,
               button03 != nil,
@@ -169,7 +176,8 @@ class battleScene: SKScene,SKButtonDelegate {
         }
         //just for a test task
         let task = Task.winGameType(name: "hellow", desc: "win the game for 3 times", isNeedProgressReport: true, winTime: 3, isNeedContinued: false)
-        self.taskLabel?.text = task.description + task.strForProgressReport!
+        //self.taskLabel?.text = task.description + task.strForProgressReport!
+        task.labelForShow = self.taskLabel
         self.interactButton?.isHidden = true
         DataManager.shared.observers.append(task.observer)
         
@@ -222,10 +230,8 @@ class battleScene: SKScene,SKButtonDelegate {
                     
                     //add player's point label
                     self.player.setUpPointLabel()
-                    if let contentLayer = self.childNode(withName: "//gameContent") {
-                        self.player.pointLabel.alpha = 0
-                        contentLayer.addChild(self.player.pointLabel)
-                    }
+                    self.player.pointLabel.alpha = 0
+                    self.contentLayer!.addChild(self.player.pointLabel)
                     let action = SKAction.fadeAlpha(to: 1, duration: 0.1)
                     let waitAction = SKAction.wait(forDuration: 0.5)
                     self.player.pointLabel.run(SKAction.sequence([action,waitAction]), completion: {
@@ -258,9 +264,7 @@ class battleScene: SKScene,SKButtonDelegate {
             selectedCard.cardNode.texture = selectedCard.cardBackTextureBlue
         }
         selectedCard.position = givenPlayer.isFunctionary ? CGPoint(x: 258.196, y: 57.412) : CGPoint(x: 258.196, y: -180.588)
-        if let contentLayer = self.childNode(withName: "//gameContent") {
-            contentLayer.addChild(selectedCard)
-        }
+        self.contentLayer?.addChild(selectedCard)
         let originPoint = givenPlayer.isFunctionary ? CGPoint(x: 2.634, y: 57.412) : CGPoint(x: 2.634, y: -180.588)
         let cardsPositionsWillBe = givenPlayer.distributeCardsHorizontally(originPoint: originPoint, gap: gapOfCards)
         
@@ -386,7 +390,7 @@ class battleScene: SKScene,SKButtonDelegate {
             self.betLabel?.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.hide()]), completion: {
                 self.betLabel?.text = "bet : $ 0"
             })
-            self.functionary.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {})
+            self.functionary.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]))
             self.player.pointLabel.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3),SKAction.removeFromParent()]), completion: {
                 //remove all cards
                 var moveAction = SKAction.move(by: CGVector(dx: -414, dy: 0), duration: 0.3)
@@ -496,15 +500,14 @@ class battleScene: SKScene,SKButtonDelegate {
         //functionary's turn
         self.functionary.cards[1].cardNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.3),SKAction.setTexture(self.functionary.cards[1].originTexture!),SKAction.wait(forDuration: 0.3)]), completion: {
             self.functionary.setUpPointLabel()
-            if let contentLayer = self.childNode(withName: "//gameContent") {
-                self.functionary.pointLabel.alpha = 0
-                contentLayer.addChild(self.functionary.pointLabel)
-            }
-            let actionA = SKAction.fadeAlpha(to: 1, duration: 0.3)
-            let actionB = SKAction.wait(forDuration: 0.3)
-            self.functionary.pointLabel.run(SKAction.sequence([actionA,actionB]), completion: {
-                self.functionaryBehavior()
-            })
+            self.functionary.pointLabel.alpha = 1
+            self.contentLayer?.addChild(self.functionary.pointLabel)
+            self.functionaryBehavior()
+//            let actionF = SKAction.fadeAlpha(to: 1, duration: 0.3)
+//            let actionB = SKAction.wait(forDuration: 0.3)
+//            self.functionary.pointLabel.run(SKAction.sequence([actionF,actionB]), completion: {
+//                self.functionaryBehavior()
+//            })
         })
     }
     func getOneLabelNamed(name givenName:String) -> SKSpriteNode {
@@ -527,7 +530,7 @@ class battleScene: SKScene,SKButtonDelegate {
         let result = self.checkTheResult(givenPlayer: self.functionary)
         if result == gameResult.normal {
             if functionaryFinalPoint < playerFinalPoint {
-                self.button01!.run(SKAction.wait(forDuration: 0.3), completion: {
+                self.run(SKAction.wait(forDuration: 0.3), completion: {
                     self.distributeOneCard(to: self.functionary, isBack: false, completetion: {
                         self.functionary.setUpPointLabel()
                         self.functionaryBehavior()
@@ -535,7 +538,7 @@ class battleScene: SKScene,SKButtonDelegate {
                 })
             }
             else {
-                self.button01!.run(SKAction.wait(forDuration: 0.3), completion: {
+                self.run(SKAction.wait(forDuration: 0.3), completion: {
                     self.didWhilePlayerLose()
                 })
                 

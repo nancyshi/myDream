@@ -75,7 +75,8 @@ class PlayerOfBlackJack: SKNode {
         self.anotherPoint = self.getPointAndAnotherPoint().theAnotherPoint
     }
     func setUpPointLabel() {
-        self.pointLabel.position = self.isFunctionary == true ? CGPoint(x: -1.362, y: -24.75) : CGPoint(x: -1.362, y: -114.75)
+        //self.pointLabel.position = self.isFunctionary == true ? CGPoint(x: -1.362, y: -24.75) : CGPoint(x: -1.362, y: -114.75)
+        self.pointLabel.position = self.isFunctionary == true ? CGPoint(x: -1.362, y: -40) : CGPoint(x: -1.362, y: -114.75)
         self.pointLabel.text = self.anotherPoint == nil ? String(self.Point) : String(self.Point) + "/" + String(self.anotherPoint!)
         if self.anotherPoint == 21 {
             self.pointLabel.text = "21"
