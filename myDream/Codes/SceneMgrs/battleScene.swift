@@ -499,6 +499,7 @@ class battleScene: SKScene,SKButtonDelegate {
         self.player.pointLabel.text = String(self.player.getFinalPoint())
         //functionary's turn
         self.functionary.cards[1].cardNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.3),SKAction.setTexture(self.functionary.cards[1].originTexture!),SKAction.wait(forDuration: 0.3)]), completion: {
+            self.functionary.pointLabel.removeAllActions() //solve the problem that pointlabel will disappear while lose the game by clicking hint
             self.functionary.setUpPointLabel()
             self.functionary.pointLabel.alpha = 1
             self.contentLayer?.addChild(self.functionary.pointLabel)
