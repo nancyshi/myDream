@@ -15,9 +15,10 @@ enum TaskState {
     case gotReward
 }
 class Task {
+    var id : Int = 10001
     var name : String? = nil
     var description : String = "default"
-    var strForProgressReport : String? {
+    var strForProgressReport : String?  = nil{
         didSet(old) {
             guard self.labelForShow != nil else {
                 return
@@ -42,7 +43,14 @@ class Task {
             observer.condition = self.condition
         }
     }
-    var labelForShow : SKLabelNode?
+    var labelForShow : SKLabelNode? {
+        didSet(old) {
+            guard self.labelForShow != nil else {
+                return
+            }
+            self.labelForShow?.text = self.description + self.strForProgressReport!
+        }
+    }
     func updateStrForProgressReport() {
         //for subclasses to override
     }
@@ -111,8 +119,8 @@ class TaskObserverWinGame : TaskObserver {
         }
         if givenReport.type == .winGame {
             currentWinNum = currentWinNum + 1
-            checkResult()
             self.condition.task?.updateStrForProgressReport()
+            checkResult()
         }
         else if givenReport.type == .loseGame {
             if (self.condition as! TaskConditionWinGame).isRequiredContinue == true {

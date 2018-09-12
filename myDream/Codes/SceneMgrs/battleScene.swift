@@ -176,7 +176,6 @@ class battleScene: SKScene,SKButtonDelegate {
         }
         //just for a test task
         let task = Task.winGameType(name: "hellow", desc: "win the game for 3 times", isNeedProgressReport: true, winTime: 3, isNeedContinued: false)
-        //self.taskLabel?.text = task.description + task.strForProgressReport!
         task.labelForShow = self.taskLabel
         self.interactButton?.isHidden = true
         DataManager.shared.observers.append(task.observer)
@@ -501,14 +500,13 @@ class battleScene: SKScene,SKButtonDelegate {
         self.functionary.cards[1].cardNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.3),SKAction.setTexture(self.functionary.cards[1].originTexture!),SKAction.wait(forDuration: 0.3)]), completion: {
             self.functionary.pointLabel.removeAllActions() //solve the problem that pointlabel will disappear while lose the game by clicking hint
             self.functionary.setUpPointLabel()
-            self.functionary.pointLabel.alpha = 1
+            self.functionary.pointLabel.alpha = 0
             self.contentLayer?.addChild(self.functionary.pointLabel)
-            self.functionaryBehavior()
-//            let actionF = SKAction.fadeAlpha(to: 1, duration: 0.3)
-//            let actionB = SKAction.wait(forDuration: 0.3)
-//            self.functionary.pointLabel.run(SKAction.sequence([actionF,actionB]), completion: {
-//                self.functionaryBehavior()
-//            })
+            let actionF = SKAction.fadeAlpha(to: 1, duration: 0.3)
+            let actionB = SKAction.wait(forDuration: 0.3)
+            self.functionary.pointLabel.run(SKAction.sequence([actionF,actionB]), completion: {
+                self.functionaryBehavior()
+            })
         })
     }
     func getOneLabelNamed(name givenName:String) -> SKSpriteNode {
